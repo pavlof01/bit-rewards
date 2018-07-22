@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as renderer from 'react-test-renderer'
 import SplashScreen from '../../../src/containers/SplashScreen'
 
-test('Login renders correctly', () => {
+test('SplashScreen renders correctly', () => {
   const tree = renderer.create(
     <SplashScreen />,
   )
