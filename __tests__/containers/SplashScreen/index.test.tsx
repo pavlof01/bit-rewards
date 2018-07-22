@@ -1,10 +1,10 @@
 import * as React from 'react'
 import * as renderer from 'react-test-renderer'
-import App from '../src/App'
+import SplashScreen from '../../../src/containers/SplashScreen'
 
-test('App renders correctly', () => {
+test('Login renders correctly', () => {
   const tree = renderer.create(
-    <App />,
+    <SplashScreen />,
   )
   expect(tree).toBeDefined()
 })

@@ -1,10 +1,10 @@
 import * as React from 'react'
 import * as renderer from 'react-test-renderer'
-import App from '../src/App'
+import RecoverPassword from '../../../src/containers/RecoverPassword'
 
-test('App renders correctly', () => {
+test('Login renders correctly', () => {
   const tree = renderer.create(
-    <App />,
+    <RecoverPassword />,
   )
   expect(tree).toBeDefined()
 })
