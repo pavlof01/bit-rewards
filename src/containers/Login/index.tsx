@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import * as React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-})
+});
 
 export interface Props { }
 export interface State { }
@@ -26,8 +26,8 @@ class Login extends React.Component<Props, State> {
           Empty Login
         </Text>
       </View>
-    )
+    );
   }
 }
 
-export default Login
+export default Login;

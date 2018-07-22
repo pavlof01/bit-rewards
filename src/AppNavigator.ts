@@ -1,9 +1,9 @@
-import { createStackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation';
 
-import SplashScreen from './containers/SplashScreen'
-import Login from './containers/Login'
-import SignUp from './containers/SignUp'
-import RecoverPassword from './containers/RecoverPassword'
+import SplashScreen from './containers/SplashScreen';
+import Login from './containers/Login';
+import SignUp from './containers/SignUp';
+import RecoverPassword from './containers/RecoverPassword';
 
 const AppNavigator = createStackNavigator({
   SplashScreen: {
@@ -14,6 +14,6 @@ const AppNavigator = createStackNavigator({
   SignUp: { screen: SignUp },
   RecoverPassword: { screen: RecoverPassword },
   Main: { screen: SplashScreen },
-})
+});
 
-export default AppNavigator
+export default AppNavigator;

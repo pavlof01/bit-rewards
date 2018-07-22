@@ -9,10 +9,6 @@
       "jsx-single",
       "avoid-escape"
     ],
-    "semicolon": [
-      true,
-      "never"
-    ],
     "member-access": [
       false
     ],
@@ -41,7 +37,6 @@
         "SwitchCase": 1
       }
     ],
-    "no-duplicate-imports": false,
     "jsx-alignment": true,
     "jsx-no-bind": true,
     "jsx-no-lambda": true,
