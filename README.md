@@ -2,7 +2,7 @@
 
 # BitRewards 💰
 
-> React Native app. Supported operating systems are >= **Android 4.1 (API 16)** and >= **iOS 8.0**.
+> React Native 0.56.4 app. Supported operating systems are >= **Android 4.1 (API 16)** and >= **iOS 9.0**.
 
 ## Get Started 🚀
 
