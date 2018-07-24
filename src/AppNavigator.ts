@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import SplashScreen from './containers/SplashScreen';
 import Login from './containers/Login';
@@ -6,9 +6,36 @@ import SignUp from './containers/SignUp';
 import RecoverPassword from './containers/RecoverPassword';
 import SpecialOffers from './containers/SpecialOffers';
 
-const AppNavigator = createStackNavigator({
+const Main = createBottomTabNavigator({
   SpecialOffers: {
     screen: SpecialOffers,
+    navigationOptions: {
+      tabBarLabel: 'Special Offers',
+    },
+  },
+  Wallet: {
+    screen: SpecialOffers,
+    navigationOptions: {
+      tabBarLabel: 'Wallet',
+    },
+  },
+  Profile: {
+    screen: SpecialOffers,
+    navigationOptions: {
+      tabBarLabel: 'Profile',
+    },
+  },
+  Other: {
+    screen: SpecialOffers,
+    navigationOptions: {
+      tabBarLabel: 'Other',
+    },
+  },
+});
+
+const AppNavigator = createStackNavigator({
+  Main: {
+    screen: Main,
     navigationOptions: { header: null },
   },
   SplashScreen: {
@@ -18,7 +45,6 @@ const AppNavigator = createStackNavigator({
   Login: { screen: Login },
   SignUp: { screen: SignUp },
   RecoverPassword: { screen: RecoverPassword },
-  Main: { screen: SplashScreen },
 });
 
 export default AppNavigator;
