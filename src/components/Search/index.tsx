@@ -19,9 +19,8 @@ const styles = StyleSheet.create({
   },
   centerText: {
     fontSize: 17,
-    lineHeight: 22,
-    height: 22,
     color: '#00000040',
+    fontFamily: 'ProximaNova-Regular',
   },
 });
 

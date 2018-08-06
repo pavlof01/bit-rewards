@@ -7,6 +7,11 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest --coverage"
   },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
   "dependencies": {
     "immutable": "^3.8.2",
     "intl": "^1.2.5",
