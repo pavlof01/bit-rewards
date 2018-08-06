@@ -2,6 +2,7 @@ import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Search from '../../components/Search';
 import Carousel from '../../components/Carousel';
+import TabBar from '../../components/TabBar';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,6 +16,10 @@ const styles = StyleSheet.create({
     marginEnd: 16,
   },
   carouselWrapper: {
+    marginStart: 14,
+    marginEnd: 14,
+  },
+  tabBarsWrapper: {
     marginStart: 14,
     marginEnd: 14,
   },
@@ -37,6 +42,9 @@ class SpecialOffers extends React.Component<Props, State> {
         </View>
         <View style={styles.carouselWrapper}>
           <Carousel />
+        </View>
+        <View style={styles.tabBarsWrapper}>
+          <TabBar />
         </View>
         <Text style={styles.centerText}>
           Empty SpecialOffers

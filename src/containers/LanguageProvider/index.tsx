@@ -16,7 +16,6 @@ class LanguageProvider extends React.PureComponent<LanguageProviderProps, State>
       messages,
     } = this.props;
     const locale = getAvailableSystemLanguageCode();
-    console.warn(`curren system language ${locale}`);
     return (
       <IntlProvider
         locale={locale}
