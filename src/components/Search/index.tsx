@@ -3,16 +3,25 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#00000010',
+    borderRadius: 10,
+    height: 36,
+    padding: 7,
+    flexDirection: 'row',
+  },
+  searchIconBox: {
+    width: 16,
+    height: 16,
+    backgroundColor: '#00000040',
+    marginEnd: 7,
   },
   centerText: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    height: 36,
+    fontSize: 17,
+    lineHeight: 22,
+    height: 22,
+    color: '#00000040',
   },
 });
 
@@ -23,8 +32,9 @@ class Search extends React.Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.searchIconBox} />
         <Text style={styles.centerText}>
-          Empty Search
+          {'Search'}
         </Text>
       </View>
     );
