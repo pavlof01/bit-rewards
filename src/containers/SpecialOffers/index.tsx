@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Search from '../../components/Search';
 import Carousel from '../../components/Carousel';
 import TabBar from '../../components/TabBar';
+import TabBarButton from '../../components/TabBar/TabBarButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,11 +45,11 @@ class SpecialOffers extends React.Component<Props, State> {
           <Carousel />
         </View>
         <View style={styles.tabBarsWrapper}>
-          <TabBar />
+          <TabBar>
+            <TabBarButton title='All offers' active />
+            <TabBarButton title='My store offers' />
+          </TabBar>
         </View>
-        <Text style={styles.centerText}>
-          Empty SpecialOffers
-        </Text>
       </View>
     );
   }
