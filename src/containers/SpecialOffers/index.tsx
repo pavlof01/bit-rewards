@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Search from '../../components/Search';
+import Carousel from '../../components/Carousel';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,6 +13,10 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     marginStart: 16,
     marginEnd: 16,
+  },
+  carouselWrapper: {
+    marginStart: 14,
+    marginEnd: 14,
   },
   centerText: {
     fontSize: 20,
@@ -29,6 +34,9 @@ class SpecialOffers extends React.Component<Props, State> {
       <View style={styles.container}>
         <View style={styles.searchWrapper}>
           <Search />
+        </View>
+        <View style={styles.carouselWrapper}>
+          <Carousel />
         </View>
         <Text style={styles.centerText}>
           Empty SpecialOffers
