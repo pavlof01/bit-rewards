@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   FlatList,
+  ListRenderItemInfo,
   StyleSheet,
   View,
   Text,
@@ -9,7 +10,7 @@ import Search from '../../components/Search';
 import Carousel from '../../components/Carousel';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
-import ItemContainer from '../../components/listItems/ItemContainer'
+import ItemContainer from '../../components/listItems/ItemContainer';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,10 +49,10 @@ export interface Props { }
 export interface State { }
 
 class SpecialOffers extends React.Component<Props, State> {
-  renderItem = ({item, index}) => {
+  renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
     return (
       <ItemContainer>
-        <Text>{item}</Text>
+        <Text>{listItemInfo.item}</Text>
       </ItemContainer>
     );
   }
