@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   Text,
+  StatusBar,
 } from 'react-native';
 import Search from '../../components/Search';
 import Carousel from '../../components/Carousel';
@@ -62,6 +63,10 @@ class SpecialOffers extends React.Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar
+          barStyle='dark-content'
+          backgroundColor='#ffffff'
+        />
         <View style={styles.offersHeader}>
           <View style={styles.searchWrapper}>
             <Search />
