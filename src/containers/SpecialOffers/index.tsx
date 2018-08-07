@@ -76,8 +76,8 @@ class SpecialOffers extends React.Component<Props, State> {
           </View>
           <View style={styles.tabBarsWrapper}>
             <TabBar>
-              <TabBarButton title='All offers' active />
-              <TabBarButton title='My store offers' />
+              <TabBarButton title='Earn BIT' active />
+              <TabBarButton title='Redeem BIT' />
             </TabBar>
           </View>
         </View>

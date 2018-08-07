@@ -5,15 +5,22 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ffffff',
     borderRadius: 4,
-    height: 92,
+    minHeight: 92,
     marginTop: 2,
     marginBottom: 8,
     marginStart: 14,
     marginEnd: 14,
     overflow: 'hidden',
+    elevation: 3,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 3,
+    shadowOpacity: 0.5,
   },
   itemContainer: {
-    height: 90,
+    minHeight: 90,
   },
   highlightBorder: {
     height: 2,
