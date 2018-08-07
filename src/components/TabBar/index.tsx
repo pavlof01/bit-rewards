@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 });
 
 export interface TabBarProps {
-  children: JSX.Element[];
+  children: JSX.Element | JSX.Element[];
 }
 export interface State { }
 

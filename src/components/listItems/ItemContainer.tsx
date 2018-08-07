@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 });
 
 export interface ItemContainerProps {
-  children: React.ReactNode;
+  children: JSX.Element | JSX.Element[];
 }
 export interface State { }
 

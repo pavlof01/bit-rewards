@@ -5,6 +5,7 @@ import Login from './containers/Login';
 import SignUp from './containers/SignUp';
 import RecoverPassword from './containers/RecoverPassword';
 import SpecialOffers from './containers/SpecialOffers';
+import Wallet from './containers/Wallet';
 
 const Main = createBottomTabNavigator({
   SpecialOffers: {
@@ -14,7 +15,7 @@ const Main = createBottomTabNavigator({
     },
   },
   Wallet: {
-    screen: SpecialOffers,
+    screen: Wallet,
     navigationOptions: {
       tabBarLabel: 'Wallet',
     },
