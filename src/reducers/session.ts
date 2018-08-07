@@ -15,3 +15,5 @@ export const sessionReducer = (state = initialState, action: sessionActions.Sess
       return state;
   }
 };
+
+export default sessionReducer;
