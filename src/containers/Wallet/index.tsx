@@ -6,7 +6,7 @@ import {
   View,
   Text,
 } from 'react-native';
-import ItemContainer from '../../components/listItems/ItemContainer';
+import ClickableItemContainer from '../../components/listItems/ClickableItemContainer';
 
 const styles = StyleSheet.create({
   container: {
@@ -50,9 +50,9 @@ export interface State { }
 class Wallet extends React.Component<Props, State> {
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
     return (
-      <ItemContainer>
+      <ClickableItemContainer>
         <Text>{listItemInfo.item}</Text>
-      </ItemContainer>
+      </ClickableItemContainer>
     );
   }
 

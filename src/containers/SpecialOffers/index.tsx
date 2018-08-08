@@ -11,7 +11,7 @@ import Search from '../../components/Search';
 import Carousel from '../../components/Carousel';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
-import ItemContainer from '../../components/listItems/ItemContainer';
+import ClickableItemContainer from '../../components/listItems/ClickableItemContainer';
 
 const styles = StyleSheet.create({
   container: {
@@ -52,9 +52,9 @@ export interface State { }
 class SpecialOffers extends React.Component<Props, State> {
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
     return (
-      <ItemContainer>
+      <ClickableItemContainer>
         <Text>{listItemInfo.item}</Text>
-      </ItemContainer>
+      </ClickableItemContainer>
     );
   }
 

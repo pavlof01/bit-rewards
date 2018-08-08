@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#ffffff',
     borderRadius: 4,
-    minHeight: 92,
     marginTop: 2,
     marginBottom: 8,
     marginStart: 14,
@@ -20,7 +19,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
   },
   itemContainer: {
-    minHeight: 90,
   },
   highlightBorder: {
     height: 2,
