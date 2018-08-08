@@ -6,6 +6,7 @@ import SignUp from './containers/SignUp';
 import RecoverPassword from './containers/RecoverPassword';
 import SpecialOffers from './containers/SpecialOffers';
 import Wallet from './containers/Wallet';
+import WalletMerchant from './containers/WalletMerchant';
 
 const Main = createBottomTabNavigator({
   SpecialOffers: {
@@ -46,6 +47,7 @@ const AppNavigator = createStackNavigator({
   Login: { screen: Login },
   SignUp: { screen: SignUp },
   RecoverPassword: { screen: RecoverPassword },
+  WalletMerchant: { screen: WalletMerchant },
 });
 
 export default AppNavigator;

@@ -6,6 +6,9 @@ import {
   View,
   Text,
 } from 'react-native';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { NavigationActions } from '../../actions/navigation';
 import ClickableItemContainer from '../../components/listItems/ClickableItemContainer';
 
 const styles = StyleSheet.create({
@@ -44,13 +47,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export interface Props { }
+export interface WalletProps {
+  openWalletMerchant: () => void;
+}
 export interface State { }
 
-class Wallet extends React.Component<Props, State> {
+class Wallet extends React.Component<WalletProps, State> {
+
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
+    const {
+      openWalletMerchant,
+    } = this.props;
     return (
-      <ClickableItemContainer>
+      <ClickableItemContainer onPress={openWalletMerchant}>
         <Text>{listItemInfo.item}</Text>
       </ClickableItemContainer>
     );
@@ -87,4 +96,11 @@ class Wallet extends React.Component<Props, State> {
   }
 }
 
-export default Wallet;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  openWalletMerchant: () => dispatch(NavigationActions.openWalletMerchant()),
+});
+
+const mapStateToProps = () => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
