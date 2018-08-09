@@ -5,8 +5,8 @@ import {
   StyleSheet,
   View,
   Text,
-  Button,
-} from 'react-native';
+  Button, StatusBar,
+} from 'react-native'
 import { SafeAreaView } from 'react-navigation';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
@@ -147,6 +147,10 @@ class WalletMerchant extends React.Component<Props, WalletMerchantState> {
   render() {
     return (
       <SafeAreaView style={styles.safeContainer}>
+        <StatusBar
+          barStyle='dark-content'
+          backgroundColor='#ffffff'
+        />
         <View style={styles.container}>
           <View style={styles.walletHeader}>
             <View style={styles.merchantIconWrapper}>
