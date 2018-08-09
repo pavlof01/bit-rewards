@@ -16,11 +16,14 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
     paddingStart: 6,
     paddingEnd: 6,
+    height: 44,
   },
   title: {
     flex: 1,
     textAlign: 'center',
     fontSize: 16,
+    lineHeight: 16,
+    height: 12,
     fontFamily: 'ProximaNova-Bold',
     color: '#22222245',
   },
@@ -44,7 +47,7 @@ class TabBar extends React.Component<TabBarProps, State> {
       onPress,
     } = this.props;
     return (
-      <Touchable onPress={onPress}>
+      <Touchable onPress={onPress} style={{ flex: 1, height: 44, }}>
         <View style={styles.container}>
           <Text style={[styles.title, active ? styles.active : {}]}>
             {title}

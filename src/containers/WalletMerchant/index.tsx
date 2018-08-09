@@ -104,9 +104,6 @@ class WalletMerchant extends React.Component<Props, State> {
           data={[
             1,
             2,
-            3,
-            4,
-            5,
           ]}
           keyExtractor={this.keyExtractor}
           renderItem={this.renderItem}
