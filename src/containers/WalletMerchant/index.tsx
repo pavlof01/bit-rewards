@@ -8,9 +8,9 @@ import {
   Button,
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
-import ClickableItemContainer from '../../components/listItems/ClickableItemContainer';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
+import EarnBitItem from '../../components/listItems/EarnBitItem';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -69,13 +69,13 @@ export interface State { }
 class WalletMerchant extends React.Component<Props, State> {
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
     return (
-      <ClickableItemContainer>
-        <Text>{listItemInfo.item}</Text>
-      </ClickableItemContainer>
+      <EarnBitItem />
     );
   }
 
   keyExtractor = (item: any, index: number) => `offer-${index}`;
+
+  handleInviteFriend = () => {};
 
   render() {
     return (
@@ -96,7 +96,7 @@ class WalletMerchant extends React.Component<Props, State> {
                 {'≈$14'}
               </Text>
             </View>
-            <Button title={'Invite a friend'} onPress={() => {}} />
+            <Button title={'Invite a friend'} onPress={this.handleInviteFriend} />
             <View style={styles.tabBarsWrapper}>
               <TabBar>
                 <TabBarButton title='Earn BIT' active />
