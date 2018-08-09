@@ -5,8 +5,11 @@ import {
   StyleSheet,
   View,
   Text,
+  Button,
 } from 'react-native';
 import ClickableItemContainer from '../../components/listItems/ClickableItemContainer';
+import TabBar from '../../components/TabBar';
+import TabBarButton from '../../components/TabBar/TabBarButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,6 +18,10 @@ const styles = StyleSheet.create({
   },
   walletHeader: {
     backgroundColor: '#ffffff',
+  },
+  tabBarsWrapper: {
+    marginStart: 14,
+    marginEnd: 14,
   },
   headerCentredText: {
     alignItems: 'center',
@@ -42,6 +49,13 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 9,
   },
+  merchantIcon: {
+    width: 75,
+    height: 75,
+    borderRadius: 40,
+    backgroundColor: '#f3f3f3',
+    alignSelf: 'center',
+  },
 });
 
 export interface Props { }
@@ -61,6 +75,42 @@ class WalletMerchant extends React.Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
+        <View style={styles.walletHeader}>
+          <View>
+            <View style={styles.merchantIcon} />
+          </View>
+          <View style={styles.headerCentredText}>
+            <Text style={styles.summaryTitle}>
+              {'Summary balance'}
+            </Text>
+            <Text style={styles.balance}>
+              {'27 500 BIT'}
+            </Text>
+            <Text style={styles.subBalance}>
+              {'≈$27,5'}
+            </Text>
+          </View>
+          <Button title={'Invite a friend'} onPress={() => {}} />
+          <View style={styles.tabBarsWrapper}>
+            <TabBar>
+              <TabBarButton title='Earn BIT' active />
+              <TabBarButton title='Redeem BIT' />
+              <TabBarButton title='2 Coupons' />
+            </TabBar>
+          </View>
+        </View>
+        <FlatList
+          contentContainerStyle={styles.listContainer}
+          data={[
+            1,
+            2,
+            3,
+            4,
+            5,
+          ]}
+          keyExtractor={this.keyExtractor}
+          renderItem={this.renderItem}
+        />
       </View>
     );
   }

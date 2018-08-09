@@ -47,7 +47,10 @@ const AppNavigator = createStackNavigator({
   Login: { screen: Login },
   SignUp: { screen: SignUp },
   RecoverPassword: { screen: RecoverPassword },
-  WalletMerchant: { screen: WalletMerchant },
+  WalletMerchant: {
+    screen: WalletMerchant,
+    navigationOptions: { header: null },
+  },
 });
 
 export default AppNavigator;
