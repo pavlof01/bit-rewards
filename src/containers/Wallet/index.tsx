@@ -5,13 +5,19 @@ import {
   StyleSheet,
   View,
   Text,
+  StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { NavigationActions } from '../../actions/navigation';
 import ClickableItemContainer from '../../components/listItems/ClickableItemContainer';
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
   container: {
     flex: 1,
     backgroundColor: '#f3f3f3',
@@ -69,29 +75,35 @@ class Wallet extends React.Component<WalletProps, State> {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.walletHeader}>
-          <View style={styles.headerCentredText}>
-            <Text style={styles.summaryTitle}>
-              {'Summary balance'}
-            </Text>
-            <Text style={styles.balance}>
-              {'27 500 BIT'}
-            </Text>
-            <Text style={styles.subBalance}>
-              {'≈$27,5'}
-            </Text>
-          </View>
-        </View>
-        <FlatList
-          contentContainerStyle={styles.listContainer}
-          data={[
-            1,
-          ]}
-          keyExtractor={this.keyExtractor}
-          renderItem={this.renderItem}
+      <SafeAreaView style={styles.safeContainer}>
+        <StatusBar
+          barStyle='dark-content'
+          backgroundColor='#ffffff'
         />
-      </View>
+        <View style={styles.container}>
+          <View style={styles.walletHeader}>
+            <View style={styles.headerCentredText}>
+              <Text style={styles.summaryTitle}>
+                {'Summary balance'}
+              </Text>
+              <Text style={styles.balance}>
+                {'27 500 BIT'}
+              </Text>
+              <Text style={styles.subBalance}>
+                {'≈$27,5'}
+              </Text>
+            </View>
+          </View>
+          <FlatList
+            contentContainerStyle={styles.listContainer}
+            data={[
+              1,
+            ]}
+            keyExtractor={this.keyExtractor}
+            renderItem={this.renderItem}
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 }
