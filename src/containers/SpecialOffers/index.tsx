@@ -7,6 +7,7 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import Search from '../../components/Search';
 import Carousel from '../../components/Carousel';
 import TabBar from '../../components/TabBar';
@@ -14,6 +15,10 @@ import TabBarButton from '../../components/TabBar/TabBarButton';
 import ClickableItemContainer from '../../components/listItems/ClickableItemContainer';
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
   container: {
     flex: 1,
     backgroundColor: '#f3f3f3',
@@ -62,38 +67,40 @@ class SpecialOffers extends React.Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.container}>
-        <StatusBar
-          barStyle='dark-content'
-          backgroundColor='#ffffff'
-        />
-        <View style={styles.offersHeader}>
-          <View style={styles.searchWrapper}>
-            <Search />
+      <SafeAreaView style={styles.safeContainer}>
+        <View style={styles.container}>
+          <StatusBar
+            barStyle='dark-content'
+            backgroundColor='#ffffff'
+          />
+          <View style={styles.offersHeader}>
+            <View style={styles.searchWrapper}>
+              <Search />
+            </View>
+            <View style={styles.carouselWrapper}>
+              <Carousel />
+            </View>
+            <View style={styles.tabBarsWrapper}>
+              <TabBar>
+                <TabBarButton title='Earn BIT' active />
+                <TabBarButton title='Redeem BIT' />
+              </TabBar>
+            </View>
           </View>
-          <View style={styles.carouselWrapper}>
-            <Carousel />
-          </View>
-          <View style={styles.tabBarsWrapper}>
-            <TabBar>
-              <TabBarButton title='Earn BIT' active />
-              <TabBarButton title='Redeem BIT' />
-            </TabBar>
-          </View>
+          <FlatList
+            contentContainerStyle={styles.listContainer}
+            data={[
+              1,
+              2,
+              3,
+              4,
+              5,
+            ]}
+            keyExtractor={this.keyExtractor}
+            renderItem={this.renderItem}
+          />
         </View>
-        <FlatList
-          contentContainerStyle={styles.listContainer}
-          data={[
-            1,
-            2,
-            3,
-            4,
-            5,
-          ]}
-          keyExtractor={this.keyExtractor}
-          renderItem={this.renderItem}
-        />
-      </View>
+      </SafeAreaView>
     );
   }
 }
