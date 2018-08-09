@@ -4,7 +4,6 @@ import {
   ListRenderItemInfo,
   StyleSheet,
   View,
-  Text,
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
@@ -12,7 +11,7 @@ import Search from '../../components/Search';
 import Carousel from '../../components/Carousel';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
-import ClickableItemContainer from '../../components/listItems/ClickableItemContainer';
+import EarnBitItem from '../../components/listItems/EarnBitItem';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -57,9 +56,7 @@ export interface State { }
 class SpecialOffers extends React.Component<Props, State> {
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
     return (
-      <ClickableItemContainer>
-        <Text>{listItemInfo.item}</Text>
-      </ClickableItemContainer>
+      <EarnBitItem />
     );
   }
 
