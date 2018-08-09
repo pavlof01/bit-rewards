@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   activityBorder: {
-    width: '50%',
     height: 2,
     backgroundColor: '#303645',
   },
@@ -25,12 +24,13 @@ class TabBar extends React.Component<TabBarProps, State> {
     const {
       children,
     } = this.props;
+    const tabsCount = React.Children.count(children);
     return (
       <View>
         <View style={styles.container}>
           {children}
         </View>
-        <View style={styles.activityBorder}/>
+        <View style={[styles.activityBorder, { width: `${100 / tabsCount}%` } ]} />
       </View>
     );
   }
