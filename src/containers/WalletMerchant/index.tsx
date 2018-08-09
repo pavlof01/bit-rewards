@@ -7,11 +7,16 @@ import {
   Text,
   Button,
 } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import ClickableItemContainer from '../../components/listItems/ClickableItemContainer';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
   container: {
     flex: 1,
     backgroundColor: '#f3f3f3',
@@ -74,41 +79,43 @@ class WalletMerchant extends React.Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.walletHeader}>
-          <View>
-            <View style={styles.merchantIcon} />
+      <SafeAreaView style={styles.safeContainer}>
+        <View style={styles.container}>
+          <View style={styles.walletHeader}>
+            <View>
+              <View style={styles.merchantIcon} />
+            </View>
+            <View style={styles.headerCentredText}>
+              <Text style={styles.merchantTitle}>
+                {'Starbucks'}
+              </Text>
+              <Text style={styles.balance}>
+                {'14 000 BIT'}
+              </Text>
+              <Text style={styles.subBalance}>
+                {'≈$14'}
+              </Text>
+            </View>
+            <Button title={'Invite a friend'} onPress={() => {}} />
+            <View style={styles.tabBarsWrapper}>
+              <TabBar>
+                <TabBarButton title='Earn BIT' active />
+                <TabBarButton title='Redeem BIT' />
+                <TabBarButton title='2 Coupons' />
+              </TabBar>
+            </View>
           </View>
-          <View style={styles.headerCentredText}>
-            <Text style={styles.merchantTitle}>
-              {'Starbucks'}
-            </Text>
-            <Text style={styles.balance}>
-              {'14 000 BIT'}
-            </Text>
-            <Text style={styles.subBalance}>
-              {'≈$14'}
-            </Text>
-          </View>
-          <Button title={'Invite a friend'} onPress={() => {}} />
-          <View style={styles.tabBarsWrapper}>
-            <TabBar>
-              <TabBarButton title='Earn BIT' active />
-              <TabBarButton title='Redeem BIT' />
-              <TabBarButton title='2 Coupons' />
-            </TabBar>
-          </View>
+          <FlatList
+            contentContainerStyle={styles.listContainer}
+            data={[
+              1,
+              2,
+            ]}
+            keyExtractor={this.keyExtractor}
+            renderItem={this.renderItem}
+          />
         </View>
-        <FlatList
-          contentContainerStyle={styles.listContainer}
-          data={[
-            1,
-            2,
-          ]}
-          keyExtractor={this.keyExtractor}
-          renderItem={this.renderItem}
-        />
-      </View>
+      </SafeAreaView>
     );
   }
 }
