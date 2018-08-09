@@ -61,6 +61,16 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'ProximaNova-Bold',
   },
+  merchantText: {
+    color: '#303645',
+    fontSize: 12,
+    fontFamily: 'ProximaNova-Regular',
+  },
+  merchantLightText: {
+    color: '#30364550',
+    fontSize: 12,
+    fontFamily: 'ProximaNova-Regular',
+  },
 });
 
 export interface EarnBitItemProps {
@@ -84,7 +94,7 @@ class SpendBitItem extends React.Component<EarnBitItemProps, State> {
         <View style={styles.container}>
           <View style={styles.infoColumn}>
             <View style={styles.merchantTitleWrapper}>
-              <Text>{'McDonalds'}</Text><Text>{'/Starbux'}</Text>
+              <Text style={styles.merchantText}>{'McDonalds '}</Text><Text style={styles.merchantLightText}>{'/Starbux'}</Text>
             </View>
             <Text style={styles.discountText}>
               {'Discount $2'}
