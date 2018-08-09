@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
     paddingStart: 14,
     paddingEnd: 14,
   },
-  summaryTitle: {
-    fontSize: 20,
+  merchantTitle: {
+    fontSize: 19,
     color: '#303645',
-    fontFamily: 'ProximaNova-Regular',
+    fontFamily: 'ProximaNova-Bold',
   },
   balance: {
     fontSize: 30,
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     width: 75,
     height: 75,
     borderRadius: 40,
-    backgroundColor: '#f3f3f3',
+    backgroundColor: '#ff764a',
     alignSelf: 'center',
   },
 });
@@ -80,14 +80,14 @@ class WalletMerchant extends React.Component<Props, State> {
             <View style={styles.merchantIcon} />
           </View>
           <View style={styles.headerCentredText}>
-            <Text style={styles.summaryTitle}>
-              {'Summary balance'}
+            <Text style={styles.merchantTitle}>
+              {'Starbucks'}
             </Text>
             <Text style={styles.balance}>
-              {'27 500 BIT'}
+              {'14 000 BIT'}
             </Text>
             <Text style={styles.subBalance}>
-              {'≈$27,5'}
+              {'≈$14'}
             </Text>
           </View>
           <Button title={'Invite a friend'} onPress={() => {}} />
