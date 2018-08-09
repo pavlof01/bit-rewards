@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
   },
   headerCentredText: {
     alignItems: 'center',
-    paddingTop: 24,
-    paddingBottom: 24,
+    paddingTop: 12,
+    paddingBottom: 12,
     paddingStart: 14,
     paddingEnd: 14,
   },
@@ -53,6 +53,9 @@ const styles = StyleSheet.create({
   listContainer: {
     paddingTop: 15,
     paddingBottom: 9,
+  },
+  merchantIconWrapper: {
+    paddingTop: 8,
   },
   merchantIcon: {
     width: 75,
@@ -82,7 +85,7 @@ class WalletMerchant extends React.Component<Props, State> {
       <SafeAreaView style={styles.safeContainer}>
         <View style={styles.container}>
           <View style={styles.walletHeader}>
-            <View>
+            <View style={styles.merchantIconWrapper}>
               <View style={styles.merchantIcon} />
             </View>
             <View style={styles.headerCentredText}>
