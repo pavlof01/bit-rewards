@@ -5,13 +5,14 @@ import {
   StyleSheet,
   View,
   Text,
-  Button, StatusBar,
-} from 'react-native'
+  StatusBar,
+} from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
 import EarnBitItem from '../../components/listItems/EarnBitItem';
 import SpendBitItem from '../../components/listItems/SpendBitItem';
+import Touchable from '../../components/Touchable';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -64,6 +65,26 @@ const styles = StyleSheet.create({
     borderRadius: 40,
     backgroundColor: '#ff764a',
     alignSelf: 'center',
+  },
+  buttonContainer: {
+    alignSelf: 'center',
+    borderRadius: 14,
+    overflow: 'hidden',
+    marginBottom: 16,
+  },
+  button: {
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingStart: 25,
+    paddingEnd: 25,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#ff764a',
+  },
+  buttonText: {
+    fontSize: 15,
+    color: '#ff764a',
+    fontFamily: 'ProximaNova-Regular',
   },
 });
 
@@ -167,7 +188,15 @@ class WalletMerchant extends React.Component<Props, WalletMerchantState> {
                 {'≈$14'}
               </Text>
             </View>
-            <Button title={'Invite a friend'} onPress={this.handleInviteFriend} />
+            <View style={styles.buttonContainer}>
+              <Touchable onPress={this.handleInviteFriend}>
+                <View style={styles.button}>
+                  <Text style={styles.buttonText}>
+                    {'Invite a friend'}
+                  </Text>
+                </View>
+              </Touchable>
+            </View>
             <View style={styles.tabBarsWrapper}>
               <TabBar onChange={this.handleChangeTab}>
                 <TabBarButton title='Earn BIT' />
