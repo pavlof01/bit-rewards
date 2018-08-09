@@ -11,7 +11,7 @@ import { SafeAreaView } from 'react-navigation';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { NavigationActions } from '../../actions/navigation';
-import ClickableItemContainer from '../../components/listItems/ClickableItemContainer';
+import MerchantItem from '../../components/listItems/MerchantItem';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -51,6 +51,14 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingBottom: 9,
   },
+  listHeaderText: {
+    fontSize: 15,
+    color: '#303645',
+    fontFamily: 'ProximaNova-Regular',
+    marginStart: 26,
+    marginEnd: 26,
+    marginBottom: 8,
+  },
 });
 
 export interface WalletProps {
@@ -65,9 +73,10 @@ class Wallet extends React.Component<WalletProps, State> {
       openWalletMerchant,
     } = this.props;
     return (
-      <ClickableItemContainer onPress={openWalletMerchant}>
-        <Text>{listItemInfo.item}</Text>
-      </ClickableItemContainer>
+      <MerchantItem
+        onPress={openWalletMerchant}
+        highlight
+      />
     );
   }
 
@@ -101,6 +110,7 @@ class Wallet extends React.Component<WalletProps, State> {
             ]}
             keyExtractor={this.keyExtractor}
             renderItem={this.renderItem}
+            ListHeaderComponent={<Text style={styles.listHeaderText}>{'Wallet list'}</Text>}
           />
         </View>
       </SafeAreaView>

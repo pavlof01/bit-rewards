@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
 export interface ClickableItemContainerProps {
   children: JSX.Element | JSX.Element[];
   onPress?: () => void;
+  highlight?: boolean;
 }
 export interface State { }
 
@@ -55,9 +56,10 @@ class ClickableItemContainer extends React.Component<ClickableItemContainerProps
     const {
       children,
       onPress,
+      highlight,
     } = this.props;
     return (
-      <ItemContainer>
+      <ItemContainer highlight={highlight}>
         <Touchable onPress={onPress}>
           <View style={styles.container}>
             <View style={styles.iconColumn}>
