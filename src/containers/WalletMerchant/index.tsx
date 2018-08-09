@@ -67,9 +67,19 @@ const styles = StyleSheet.create({
 });
 
 export interface Props { }
-export interface State { }
+export interface WalletMerchantState {
+  activeTab: number;
+}
 
-class WalletMerchant extends React.Component<Props, State> {
+class WalletMerchant extends React.Component<Props, WalletMerchantState> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      activeTab: 0,
+    };
+  }
+
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
     return (
       <EarnBitItem />
@@ -79,6 +89,39 @@ class WalletMerchant extends React.Component<Props, State> {
   keyExtractor = (item: any, index: number) => `offer-${index}`;
 
   handleInviteFriend = () => {};
+
+  handleChangeTab = (index: number) => this.setState({ activeTab: index });
+
+  getFlatListData = () => {
+    const {
+      activeTab,
+    } = this.state;
+    const earnBitListData = [
+      1,
+      2,
+    ];
+    const redeemBitListData = [
+      1,
+      2,
+      3,
+      4,
+    ];
+    const couponsListData = [
+      1,
+      2,
+      3,
+    ];
+    switch (activeTab) {
+      case 0:
+        return earnBitListData;
+      case 1:
+        return redeemBitListData;
+      case 2:
+        return couponsListData;
+      default:
+        return earnBitListData;
+    }
+  }
 
   render() {
     return (
@@ -101,8 +144,8 @@ class WalletMerchant extends React.Component<Props, State> {
             </View>
             <Button title={'Invite a friend'} onPress={this.handleInviteFriend} />
             <View style={styles.tabBarsWrapper}>
-              <TabBar>
-                <TabBarButton title='Earn BIT' active />
+              <TabBar onChange={this.handleChangeTab}>
+                <TabBarButton title='Earn BIT' />
                 <TabBarButton title='Redeem BIT' />
                 <TabBarButton title='2 Coupons' />
               </TabBar>
@@ -110,10 +153,7 @@ class WalletMerchant extends React.Component<Props, State> {
           </View>
           <FlatList
             contentContainerStyle={styles.listContainer}
-            data={[
-              1,
-              2,
-            ]}
+            data={this.getFlatListData()}
             keyExtractor={this.keyExtractor}
             renderItem={this.renderItem}
           />
