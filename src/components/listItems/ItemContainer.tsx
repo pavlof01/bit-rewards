@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
 
 export interface ItemContainerProps {
   children: JSX.Element | JSX.Element[];
+  highlight?: boolean;
 }
 export interface State { }
 
@@ -35,13 +36,18 @@ class ItemContainer extends React.Component<ItemContainerProps, State> {
   render() {
     const {
       children,
+      highlight,
     } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.itemContainer}>
           {children}
         </View>
-        <View style={styles.highlightBorder}/>
+        {
+          highlight && (
+            <View style={styles.highlightBorder}/>
+          )
+        }
       </View>
     );
   }

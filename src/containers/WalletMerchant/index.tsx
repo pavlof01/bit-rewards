@@ -11,6 +11,7 @@ import { SafeAreaView } from 'react-navigation';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
 import EarnBitItem from '../../components/listItems/EarnBitItem';
+import SpendBitItem from '../../components/listItems/SpendBitItem';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -71,6 +72,10 @@ export interface WalletMerchantState {
   activeTab: number;
 }
 
+const EARN_BIT_TAB_INDEX = 0;
+const REDEEM_BIT_TAB_INDEX = 1;
+const COUPONS_TAB_INDEX = 2;
+
 class WalletMerchant extends React.Component<Props, WalletMerchantState> {
   constructor(props: Props) {
     super(props);
@@ -81,9 +86,25 @@ class WalletMerchant extends React.Component<Props, WalletMerchantState> {
   }
 
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
-    return (
-      <EarnBitItem />
-    );
+    const {
+      activeTab,
+    } = this.state;
+    switch (activeTab) {
+      case EARN_BIT_TAB_INDEX:
+        return (
+          <EarnBitItem />
+        );
+      case REDEEM_BIT_TAB_INDEX:
+        return (
+          <SpendBitItem />
+        );
+      case COUPONS_TAB_INDEX:
+        return (
+          <SpendBitItem />
+        );
+      default:
+        return null;
+    }
   }
 
   keyExtractor = (item: any, index: number) => `offer-${index}`;
@@ -112,11 +133,11 @@ class WalletMerchant extends React.Component<Props, WalletMerchantState> {
       3,
     ];
     switch (activeTab) {
-      case 0:
+      case EARN_BIT_TAB_INDEX:
         return earnBitListData;
-      case 1:
+      case REDEEM_BIT_TAB_INDEX:
         return redeemBitListData;
-      case 2:
+      case COUPONS_TAB_INDEX:
         return couponsListData;
       default:
         return earnBitListData;
