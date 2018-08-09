@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +19,6 @@ const styles = StyleSheet.create({
   searchIconBox: {
     width: 16,
     height: 16,
-    backgroundColor: '#00000040',
     marginEnd: 7,
   },
   centerText: {
@@ -31,7 +35,7 @@ class Search extends React.Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.searchIconBox} />
+        <Image source={require('../../img/ic_search.png')} style={styles.searchIconBox} />
         <Text style={styles.centerText}>
           {'Search'}
         </Text>
