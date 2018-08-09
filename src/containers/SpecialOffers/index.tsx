@@ -79,7 +79,7 @@ class SpecialOffers extends React.Component<Props, State> {
             </View>
             <View style={styles.tabBarsWrapper}>
               <TabBar>
-                <TabBarButton title='Earn BIT' active />
+                <TabBarButton title='Earn BIT' />
                 <TabBarButton title='Redeem BIT' />
               </TabBar>
             </View>

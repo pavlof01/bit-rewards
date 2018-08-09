@@ -16,21 +16,53 @@ const styles = StyleSheet.create({
 
 export interface TabBarProps {
   children: JSX.Element | JSX.Element[];
+  onChange?: (index: number) => void;
 }
-export interface State { }
+export interface TabBarState {
+  activeIndex: number;
+}
 
-class TabBar extends React.Component<TabBarProps, State> {
+class TabBar extends React.Component<TabBarProps, TabBarState> {
+  constructor(props: TabBarProps) {
+    super(props);
+
+    this.state = {
+      activeIndex: 0,
+    };
+  }
+
+  toggleTab = (index: number): void => {
+    const {
+      onChange,
+    } = this.props;
+    this.setState({ activeIndex: index }, () => {
+      if (typeof onChange === 'function') {
+        onChange(index);
+      }
+    });
+  }
+
   render() {
     const {
       children,
     } = this.props;
+    const {
+      activeIndex,
+    } = this.state;
     const tabsCount = React.Children.count(children);
+    const tabs = React.Children.map(children, (child, index: number) => {
+      // @ts-ignore
+      return React.cloneElement(child, {
+        onPress: () => this.toggleTab(index),
+        active: activeIndex === index,
+      });
+    });
     return (
       <View>
         <View style={styles.container}>
-          {children}
+          {tabs}
         </View>
-        <View style={[styles.activityBorder, { width: `${100 / tabsCount}%` } ]} />
+        <View style={[styles.activityBorder, { width: `${100 / tabsCount}%`, left: `${activeIndex * (100 / tabsCount)}%` } ]} />
       </View>
     );
   }
