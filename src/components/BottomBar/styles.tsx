@@ -9,5 +9,12 @@ export function createBottomBarOptions(label: string, src: ImageSourcePropType):
       source={src}
       tintColor={props.tintColor}
     />,
+    tabBarOptions : {
+      inactiveTintColor: '#30364580',
+      activeTintColor: '#ff764a',
+      style: {
+        backgroundColor: '#ffffff',
+      },
+    },
   };
 }
