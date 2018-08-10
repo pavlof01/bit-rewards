@@ -10,6 +10,7 @@ import Wallet from './containers/Wallet';
 import WalletMerchant from './containers/WalletMerchant';
 import Profile from './containers/Profile';
 import Other from './containers/Other';
+import History from './containers/History';
 
 const Main = createBottomTabNavigator({
   SpecialOffers: {
@@ -45,6 +46,9 @@ const AppNavigator = createStackNavigator({
   WalletMerchant: {
     screen: WalletMerchant,
     navigationOptions: { header: null },
+  },
+  History: {
+    screen: History,
   },
 });
 

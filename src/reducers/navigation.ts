@@ -22,6 +22,11 @@ export const navigationReducer = (state = initialState, action: any) => {
       nextState = getStateForAction(navigateWalletMerchantAction, state);
       break;
     }
+    case navigationActions.OPEN_WALLET_HISTORY: {
+      const navigateWalletMerchantAction = NavigationActions.navigate({ routeName: 'History' });
+      nextState = getStateForAction(navigateWalletMerchantAction, state);
+      break;
+    }
     default:
       nextState = getStateForAction(action, state);
       break;

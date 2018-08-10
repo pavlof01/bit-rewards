@@ -12,6 +12,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { NavigationActions } from '../../actions/navigation';
 import MerchantItem from '../../components/listItems/MerchantItem';
+import Touchable from '../../components/Touchable';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -59,10 +60,24 @@ const styles = StyleSheet.create({
     marginEnd: 26,
     marginBottom: 8,
   },
+  historyButtonContainer: {
+    top: 0,
+    right: 0,
+    position: 'absolute',
+  },
+  historyButton: {
+    padding: 17,
+  },
+  historyButtonText: {
+    fontSize: 17,
+    color: '#ff764a',
+    fontFamily: 'ProximaNova-Regular',
+  },
 });
 
 export interface WalletProps {
   openWalletMerchant: () => void;
+  openWalletHistory: () => void;
 }
 export interface State { }
 
@@ -83,6 +98,9 @@ class Wallet extends React.Component<WalletProps, State> {
   keyExtractor = (item: any, index: number) => `wallet-${index}`;
 
   render() {
+    const {
+      openWalletHistory,
+    } = this.props;
     return (
       <SafeAreaView style={styles.safeContainer}>
         <StatusBar
@@ -102,6 +120,15 @@ class Wallet extends React.Component<WalletProps, State> {
                 {'≈$27,5'}
               </Text>
             </View>
+            <View style={styles.historyButtonContainer}>
+              <Touchable onPress={openWalletHistory}>
+                <View style={styles.historyButton}>
+                  <Text style={styles.historyButtonText}>
+                    {'History'}
+                  </Text>
+                </View>
+              </Touchable>
+            </View>
           </View>
           <FlatList
             contentContainerStyle={styles.listContainer}
@@ -120,6 +147,7 @@ class Wallet extends React.Component<WalletProps, State> {
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   openWalletMerchant: () => dispatch(NavigationActions.openWalletMerchant()),
+  openWalletHistory: () => dispatch(NavigationActions.openWalletHistory()),
 });
 
 const mapStateToProps = () => ({
