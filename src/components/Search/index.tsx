@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   StyleSheet,
-  Text,
+  TextInput,
   View,
   Image,
 } from 'react-native';
@@ -22,9 +22,12 @@ const styles = StyleSheet.create({
     marginEnd: 7,
   },
   centerText: {
+    flex: 1,
+    padding: 0,
     fontSize: 17,
-    color: '#00000040',
+    color: '#000000',
     fontFamily: 'ProximaNova-Regular',
+    borderWidth: 0,
   },
 });
 
@@ -36,9 +39,12 @@ class Search extends React.Component<Props, State> {
     return (
       <View style={styles.container}>
         <Image source={require('../../img/ic_search.png')} style={styles.searchIconBox} />
-        <Text style={styles.centerText}>
-          {'Search'}
-        </Text>
+        <TextInput
+          style={styles.centerText}
+          placeholder='Search'
+          placeholderTextColor='#00000040'
+          underlineColorAndroid='transparent'
+        />
       </View>
     );
   }
