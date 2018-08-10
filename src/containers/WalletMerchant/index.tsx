@@ -5,9 +5,14 @@ import {
   StyleSheet,
   View,
   Text,
+  Image,
   StatusBar,
 } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import {
+  NavigationScreenProp,
+  NavigationState,
+  SafeAreaView,
+} from 'react-navigation';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
 import EarnBitItem from '../../components/listItems/EarnBitItem';
@@ -86,9 +91,29 @@ const styles = StyleSheet.create({
     color: '#ff764a',
     fontFamily: 'ProximaNova-Regular',
   },
+  backArrowWrapper: {
+    top: 0,
+    left: 0,
+    width: 42,
+    height: 40,
+    position: 'absolute',
+  },
+  backArrowBox: {
+    width: 42,
+    height: 40,
+    padding: 7,
+  },
+  backArrowImage: {
+    width: 20,
+    height: 18,
+    margin: 4,
+  },
 });
 
-export interface Props { }
+export interface Props {
+  navigation: NavigationScreenProp<NavigationState>;
+}
+
 export interface WalletMerchantState {
   activeTab: number;
 }
@@ -133,6 +158,13 @@ class WalletMerchant extends React.Component<Props, WalletMerchantState> {
   handleInviteFriend = () => {};
 
   handleChangeTab = (index: number) => this.setState({ activeTab: index });
+
+  handleBack = () => {
+    const {
+      navigation,
+    } = this.props;
+    navigation.goBack();
+  }
 
   getFlatListData = () => {
     const {
@@ -203,6 +235,13 @@ class WalletMerchant extends React.Component<Props, WalletMerchantState> {
                 <TabBarButton title='Redeem BIT' />
                 <TabBarButton title='2 Coupons' />
               </TabBar>
+            </View>
+            <View style={styles.backArrowWrapper}>
+              <Touchable onPress={this.handleBack}>
+                <View style={styles.backArrowBox}>
+                  <Image source={require('../../img/back_arrow.png')} style={styles.backArrowImage} />
+                </View>
+              </Touchable>
             </View>
           </View>
           <FlatList
