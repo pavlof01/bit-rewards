@@ -12,6 +12,7 @@ import Carousel from '../../components/Carousel';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
 import EarnBitItem from '../../components/listItems/EarnBitItem';
+import SpendBitItem from '../../components/listItems/SpendBitItem';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -50,14 +51,83 @@ const styles = StyleSheet.create({
   },
 });
 
-export interface Props { }
-export interface State { }
+const EARN_BIT_TAB_INDEX = 0;
+const REDEEM_BIT_TAB_INDEX = 1;
 
-class SpecialOffers extends React.Component<Props, State> {
+export interface Props { }
+export interface SpecialOffersState {
+  activeTab: number;
+}
+
+class SpecialOffers extends React.Component<Props, SpecialOffersState> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      activeTab: 0,
+    };
+  }
+
+  handleChangeTab = (index: number) => this.setState({ activeTab: index });
+
+  getFlatListData = () => {
+    const {
+      activeTab,
+    } = this.state;
+    const earnBitListData = [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+    ];
+    const redeemBitListData = [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+    ];
+    switch (activeTab) {
+      case EARN_BIT_TAB_INDEX:
+        return earnBitListData;
+      case REDEEM_BIT_TAB_INDEX:
+        return redeemBitListData;
+      default:
+        return [];
+    }
+  }
+
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
-    return (
-      <EarnBitItem />
-    );
+    const {
+      activeTab,
+    } = this.state;
+    switch (activeTab) {
+      case EARN_BIT_TAB_INDEX:
+        return (
+          <EarnBitItem />
+        );
+      case REDEEM_BIT_TAB_INDEX:
+        return (
+          <SpendBitItem />
+        );
+      default:
+        return null;
+    }
   }
 
   keyExtractor = (item: any, index: number) => `offer-${index}`;
@@ -78,7 +148,7 @@ class SpecialOffers extends React.Component<Props, State> {
               <Carousel />
             </View>
             <View style={styles.tabBarsWrapper}>
-              <TabBar>
+              <TabBar onChange={this.handleChangeTab}>
                 <TabBarButton title='Earn BIT' />
                 <TabBarButton title='Redeem BIT' />
               </TabBar>
@@ -86,13 +156,7 @@ class SpecialOffers extends React.Component<Props, State> {
           </View>
           <FlatList
             contentContainerStyle={styles.listContainer}
-            data={[
-              1,
-              2,
-              3,
-              4,
-              5,
-            ]}
+            data={this.getFlatListData()}
             keyExtractor={this.keyExtractor}
             renderItem={this.renderItem}
           />
