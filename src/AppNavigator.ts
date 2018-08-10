@@ -12,19 +12,19 @@ import WalletMerchant from './containers/WalletMerchant';
 const Main = createBottomTabNavigator({
   SpecialOffers: {
     screen: SpecialOffers,
-    navigationOptions: createBottomBarOptions('Special Offers', null),
+    navigationOptions: createBottomBarOptions('Special Offers', require('./img/ic_special_offers.png')),
   },
   Wallet: {
     screen: Wallet,
-    navigationOptions: createBottomBarOptions('Wallet', null),
+    navigationOptions: createBottomBarOptions('Wallet', require('./img/ic_wallets.png')),
   },
   Profile: {
     screen: SpecialOffers,
-    navigationOptions: createBottomBarOptions('Profile', null),
+    navigationOptions: createBottomBarOptions('Profile', require('./img/ic_profile.png')),
   },
   Other: {
     screen: SpecialOffers,
-    navigationOptions: createBottomBarOptions('Other', null),
+    navigationOptions: createBottomBarOptions('Other', require('./img/ic_others.png')),
   },
 });
 
