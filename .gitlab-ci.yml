@@ -1,0 +1,111 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  XCARCHIVE_NAME: "App.xcarchive"
+  XCZIP_NAME: "App.zip"
+  IPA_NAME: "App.ipa"
+  CHANGELOG_FILE: "changelog.txt"
+  BUILD_CRASHLYTICS_API_TOKEN: "8e12492f8e392164dd1050796f5bd93be7a936d0"
+  BUILD_CRASHLYTICS_BUILD_SECRET: "ffbd17bf1aefd0ce48a08e7ac0a9d11a2112854f6e0a809dc4900979ea6c9733"
+  BUILD_CRASHLYTICS_TEST_GROUPS: "icerock-testers"
+
+before_script:
+  - export LANG=en_US.UTF-8
+  - export LANGUAGE=en_US.UTF-8
+  - export LC_ALL=en_US.UTF-8
+  - npm install
+
+build ios:
+  stage: build
+  variables:
+    BUILD_APP_IDENTIFIER: "com.icerockdev.bitrewards"
+    BUILD_SCHEME: "bitrewards"
+  script:
+    - export BUILD_NUMBER=$(echo $CI_COMMIT_TAG | sed 's/.*\///g')
+    - cd ios
+    - fastlane build
+  artifacts:
+    paths:
+      - ios/${XCZIP_NAME}
+      - ios/${CHANGELOG_FILE}
+    expire_in: 2 days
+  tags:
+    - fastlane
+    - osx
+    - xcode
+  only:
+    - /^build/ios/[0-9]*$/
+
+build android:
+  stage: build
+  variables:
+    ASSEMBLE_TASK: "assembleRelease"
+    ARTIFACT_APK: android/app/build/outputs/apk/release/app-release.apk
+  script:
+    # получаем из тега запустившего сборку номер билда
+    - export BUILD_NUMBER=$(echo $CI_COMMIT_TAG | sed 's/.*\///g')
+    # собираем список задач сделанных с последнего билда
+    - fastlane run changelog_from_git_commits tag_match_pattern:build/* | grep -E '^([a-zA-Z]*-.*)' | sed 's/^\([a-zA-Z]*-[0-9]*\).*$/\1/' | sort | uniq |  tr '\n' ',' | sed 's/\(.*\),/\1/' > changelog.txt || true
+    # выставляем билдномер
+    - sed -i '' "s/BUILD_CODE.*/BUILD_CODE=${BUILD_NUMBER}/" android/gradle.properties
+    # собираем билд
+    - cd android
+    - ./gradlew ${ASSEMBLE_TASK}
+    - cd ..
+    # сохраняем использованную схему (нужно для экспорта архива)
+    - echo ${ARTIFACT_APK} > apk.txt
+  artifacts:
+    paths:
+      - ${ARTIFACT_APK}
+      - apk.txt
+      - changelog.txt
+    expire_in: 2 days
+  except:
+    - branches
+  tags:
+    - android
+    - gradle
+  only:
+    - /^build/android/[0-9]*$/
+
+deploy ios to fabric:
+  stage: deploy
+  variables:
+    BUILD_APP_IDENTIFIER: "com.icerockdev.bitrewards"
+    BUILD_SCHEME: "bitrewards"
+    BUILD_EXPORT_METHOD: 'enterprise'
+  environment:
+    name: fabric
+    url: https://fabric.io/bitrewards/ios/apps/com.icerockdev.bitrewards/beta/releases/latest
+  script:
+    - cd ios
+    - fastlane deploy_fabric
+  artifacts:
+    paths:
+      - ios/${IPA_NAME}
+      - ios/${CHANGELOG_FILE}
+    expire_in: 2 days
+  tags:
+    - fastlane
+    - xcode
+    - osx
+  only:
+    - /^build/ios/[0-9]*$/
+
+deploy android to fabric:
+  stage: deploy
+  environment:
+    name: fabric
+    url: https://www.fabric.io/bitrewards/android/apps/com.icerockdev.bitrewards/beta/releases/latest
+  script:
+    - export APK_PATH=$(cat apk.txt)
+    - fastlane run crashlytics api_token:${BUILD_CRASHLYTICS_API_TOKEN} build_secret:${BUILD_CRASHLYTICS_BUILD_SECRET} notifications:true groups:${BUILD_CRASHLYTICS_TEST_GROUPS} apk_path:$APK_PATH notes_path:changelog.txt
+  except:
+    - branches
+  tags:
+    - android
+    - fastlane
+  only:
+    - /^build/android/[0-9]*$/
