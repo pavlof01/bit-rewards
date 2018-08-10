@@ -80,7 +80,7 @@ class Wallet extends React.Component<WalletProps, State> {
     );
   }
 
-  keyExtractor = (item: any, index: number) => `offer-${index}`;
+  keyExtractor = (item: any, index: number) => `wallet-${index}`;
 
   render() {
     return (

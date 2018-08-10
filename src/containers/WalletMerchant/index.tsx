@@ -153,7 +153,7 @@ class WalletMerchant extends React.Component<Props, WalletMerchantState> {
     }
   }
 
-  keyExtractor = (item: any, index: number) => `offer-${index}`;
+  keyExtractor = (item: any, index: number) => `wallet-merchent-${index}`;
 
   handleInviteFriend = () => {};
 

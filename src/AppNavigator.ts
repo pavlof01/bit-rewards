@@ -9,6 +9,7 @@ import SpecialOffers from './containers/SpecialOffers';
 import Wallet from './containers/Wallet';
 import WalletMerchant from './containers/WalletMerchant';
 import Profile from './containers/Profile';
+import Other from './containers/Other';
 
 const Main = createBottomTabNavigator({
   SpecialOffers: {
@@ -24,7 +25,7 @@ const Main = createBottomTabNavigator({
     navigationOptions: createBottomBarOptions('Profile', require('./img/ic_profile.png')),
   },
   Other: {
-    screen: SpecialOffers,
+    screen: Other,
     navigationOptions: createBottomBarOptions('Other', require('./img/ic_others.png')),
   },
 });
