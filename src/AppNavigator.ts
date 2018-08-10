@@ -8,6 +8,7 @@ import RecoverPassword from './containers/RecoverPassword';
 import SpecialOffers from './containers/SpecialOffers';
 import Wallet from './containers/Wallet';
 import WalletMerchant from './containers/WalletMerchant';
+import Profile from './containers/Profile';
 
 const Main = createBottomTabNavigator({
   SpecialOffers: {
@@ -19,7 +20,7 @@ const Main = createBottomTabNavigator({
     navigationOptions: createBottomBarOptions('Wallet', require('./img/ic_wallets.png')),
   },
   Profile: {
-    screen: SpecialOffers,
+    screen: Profile,
     navigationOptions: createBottomBarOptions('Profile', require('./img/ic_profile.png')),
   },
   Other: {
