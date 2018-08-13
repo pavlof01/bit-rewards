@@ -54,6 +54,20 @@ class Api {
     });
   }
 
+  /**
+   * Загружает список транзакций для определенного мерчанта.
+   *
+   * @param {string} partnerKey - ключ мерчанта, например: 'test-partner-key'
+   * @param {number} page - загружаемая страница.
+   */
+  static getTransactionList<T = any>(partnerKey: string, page: number): AxiosPromise<T> {
+    return Api.get(`/${partnerKey}/transaction`, {
+      params: {
+        page,
+      },
+    });
+  }
+
 }
 
 export default Api;
