@@ -16,6 +16,7 @@
     "axios": "^0.18.0",
     "immutable": "^3.8.2",
     "intl": "^1.2.5",
+    "moment": "^2.22.2",
     "react": "16.4.1",
     "react-intl": "^2.4.0",
     "react-native": "0.56.0",

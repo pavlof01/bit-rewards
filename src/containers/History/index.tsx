@@ -52,7 +52,18 @@ class History extends React.Component<HistoryProps, State> {
   }
 
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
-    return <WalletHistoryItem />;
+    console.warn(JSON.stringify(listItemInfo, null, 2));
+    const {
+      item,
+    } = listItemInfo;
+    return (
+      <WalletHistoryItem
+        id={item.id}
+        title={item.title}
+        dateString={item.confirmed}
+        balanceChange={item.balanceChange}
+      />
+    );
   }
 
   keyExtractor = (item: any, index: number) => `wallet-history-${index}`;

@@ -4,8 +4,9 @@ import {
   View,
   Text,
 } from 'react-native';
+import * as moment from 'moment';
 import Touchable from '../Touchable';
-import Status from '../Status'
+import Status from '../Status';
 
 const styles = StyleSheet.create({
   container: {
@@ -62,10 +63,17 @@ const styles = StyleSheet.create({
     color: '#30354550',
     fontFamily: 'ProximaNova-Regular',
   },
+  noData: {
+    color: 'red',
+  },
 });
 
 export interface WalletHistoryItemContainerProps {
   onPress?: () => void;
+  id: number;
+  title: string;
+  dateString: string;
+  balanceChange: number;
 }
 export interface State { }
 
@@ -73,29 +81,40 @@ class WalletHistoryItem extends React.Component<WalletHistoryItemContainerProps,
   render() {
     const {
       onPress,
+      id,
+      title,
+      dateString,
+      balanceChange,
     } = this.props;
+    let displayDate = '--.--.--, --:-- am';
+    try {
+      const date = moment(dateString, 'DD.MM.YY HH:mm');
+      displayDate = date.format('DD.MM.YYYY hh:mm a');
+    } catch (err) {
+      console.warn(JSON.stringify(err, null, 2));
+    }
     return (
       <View style={styles.container}>
         <Touchable onPress={onPress}>
           <View style={styles.contentRow}>
             <View style={styles.historyTitleRow}>
               <Text style={styles.titleText}>
-                {'ID 4. Today, 12:42 pm'}
+                {`ID ${id}. ${displayDate}`}
               </Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.operationText}>
-                {'Deposit from'}
+                {`${title}`}
               </Text>
               <Text style={styles.bitValue}>
-                {'+ 1 200 BIT'}
+                {`+ ${balanceChange} BIT`}
               </Text>
             </View>
             <View style={styles.row}>
-              <Text style={styles.addressNumber}>
+              <Text style={[styles.addressNumber, styles.noData]}>
                 {'0x59************6552'}
               </Text>
-              <Text style={styles.bitSubValue}>
+              <Text style={[styles.bitSubValue, styles.noData]}>
                 {'≈$1,2'}
               </Text>
             </View>
