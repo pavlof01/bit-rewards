@@ -28,6 +28,7 @@
 		D5D88B194A12459693CEE899 /* ProximaNova-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA97A172F0BE457FBA90D131 /* ProximaNova-Regular.ttf */; };
 		D707C751860F43019C9004B5 /* ProximaNova-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC12A716904F472C84AC83C9 /* ProximaNova-Bold.ttf */; };
 		E5C9D180255357102763B1E6 /* Pods_bitrewards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5092ED39C72796A43AB0EF2C /* Pods_bitrewards.framework */; };
+		128EBA0006F54217BF16EDB0 /* ProximaNova-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B635B0381504869AEF4E4D7 /* ProximaNova-Semibold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -329,6 +330,7 @@
 		ADDA5903AE35400A56CED522 /* Pods-bitrewards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bitrewards.release.xcconfig"; path = "Pods/Target Support Files/Pods-bitrewards/Pods-bitrewards.release.xcconfig"; sourceTree = "<group>"; };
 		BA97A172F0BE457FBA90D131 /* ProximaNova-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Regular.ttf"; path = "../assets/fonts/ProximaNova-Regular.ttf"; sourceTree = "<group>"; };
 		CC12A716904F472C84AC83C9 /* ProximaNova-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "ProximaNova-Bold.ttf"; path = "../assets/fonts/ProximaNova-Bold.ttf"; sourceTree = "<group>"; };
+		0B635B0381504869AEF4E4D7 /* ProximaNova-Semibold.ttf */ = {isa = PBXFileReference; name = "ProximaNova-Semibold.ttf"; path = "../assets/fonts/ProximaNova-Semibold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -565,6 +567,7 @@
 			children = (
 				CC12A716904F472C84AC83C9 /* ProximaNova-Bold.ttf */,
 				BA97A172F0BE457FBA90D131 /* ProximaNova-Regular.ttf */,
+				0B635B0381504869AEF4E4D7 /* ProximaNova-Semibold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -993,6 +996,7 @@
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				D707C751860F43019C9004B5 /* ProximaNova-Bold.ttf in Resources */,
 				D5D88B194A12459693CEE899 /* ProximaNova-Regular.ttf in Resources */,
+				128EBA0006F54217BF16EDB0 /* ProximaNova-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
