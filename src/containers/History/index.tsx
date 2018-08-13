@@ -3,10 +3,13 @@ import {
   StyleSheet,
   View,
   StatusBar,
-  FlatList, ListRenderItemInfo,
-} from 'react-native'
+  FlatList,
+  ListRenderItemInfo,
+} from 'react-native';
 import { SafeAreaView } from 'react-navigation';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { HistoryActions } from '../../actions/history';
 import WalletHistoryItem from '../../components/listItems/WalletHistoryItem';
 
 const styles = StyleSheet.create({
@@ -24,11 +27,23 @@ const styles = StyleSheet.create({
   },
 });
 
-export interface Props { }
+export interface HistoryProps {
+  fetchHistory: (page: number) => any;
+  isFetching: boolean;
+  items: any;
+  error: any;
+}
 
 export interface State { }
 
-class History extends React.Component<Props, State> {
+class History extends React.Component<HistoryProps, State> {
+
+  componentDidMount() {
+    const {
+      fetchHistory,
+    } = this.props;
+    fetchHistory(1);
+  }
 
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
     return <WalletHistoryItem />;
@@ -37,11 +52,11 @@ class History extends React.Component<Props, State> {
   keyExtractor = (item: any, index: number) => `wallet-history-${index}`;
 
   getFlatListData = () => {
-    return [
-      1,
-      2,
-      3,
-    ];
+    const {
+      items,
+    } = this.props;
+    console.warn(JSON.stringify(items));
+    return items;
   }
 
   render() {
@@ -64,10 +79,14 @@ class History extends React.Component<Props, State> {
   }
 }
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchHistory: (page: number) => dispatch(HistoryActions.fetchTransactionList('test-partner-key', page)),
 });
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state: any) => ({
+  isFetching: state.history.get('isFetching'),
+  items: state.history.get('items').toJS(),
+  error: state.history.get('error'),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(History);

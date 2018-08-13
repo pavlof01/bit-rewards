@@ -4,10 +4,12 @@ import * as historyActions from '../actions/history';
 
 function* transactionHistoryFlow(action: historyActions.HistoryActions) {
   try {
-    const items = yield call(Api.getTransactionList, 'test-partner-key', 1);
-    yield put(HistoryActions.fetchTransactionListSuccess(items));
+    // TODO: remove hardcoded token when auth api was ready.
+    Api.setAuthToken('12345');
+    const responseData = yield call(Api.getTransactionList, action.payload.partnerKey, action.payload.page);
+    yield put(historyActions.HistoryActions.fetchTransactionListSuccess(responseData.data.items));
   } catch (err) {
-    yield put(HistoryActions.fetchTransactionListFailure(err));
+    yield put(historyActions.HistoryActions.fetchTransactionListFailure(err));
   }
 }
 

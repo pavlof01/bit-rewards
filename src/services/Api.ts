@@ -8,6 +8,7 @@ const API_BASE_URL = 'http://crm.inprg.com/api-client';
 
 class Api {
   private static instance: Api;
+  private static authToken: string;
   private axiosInstance: AxiosInstance;
   private constructor() {
     this.axiosInstance = axios.create({
@@ -28,6 +29,11 @@ class Api {
 
   static getAxios(): AxiosInstance {
     return Api.getInstance().axiosInstance;
+  }
+
+  static setAuthToken(token: string) {
+    this.authToken = token;
+    Api.getInstance().axiosInstance.defaults.headers.common['X-Auth-Token'] = this.authToken;
   }
 
   static get<T = any>(url: string, config?: AxiosRequestConfig): AxiosPromise<T> {
