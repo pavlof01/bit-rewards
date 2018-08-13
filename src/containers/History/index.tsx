@@ -5,6 +5,7 @@ import {
   StatusBar,
   FlatList,
   ListRenderItemInfo,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Dispatch } from 'redux';
@@ -24,6 +25,11 @@ const styles = StyleSheet.create({
   listContainer: {
     paddingTop: 15,
     paddingBottom: 9,
+  },
+  activityIndicator: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
   },
 });
 
@@ -55,11 +61,13 @@ class History extends React.Component<HistoryProps, State> {
     const {
       items,
     } = this.props;
-    console.warn(JSON.stringify(items));
     return items;
   }
 
   render() {
+    const {
+      isFetching,
+    } = this.props;
     return (
       <SafeAreaView style={styles.safeContainer}>
         <StatusBar
@@ -67,12 +75,23 @@ class History extends React.Component<HistoryProps, State> {
           backgroundColor='#ffffff'
         />
         <View style={styles.container}>
-          <FlatList
-            contentContainerStyle={styles.listContainer}
-            data={this.getFlatListData()}
-            keyExtractor={this.keyExtractor}
-            renderItem={this.renderItem}
-          />
+          {
+            isFetching && (
+              <View style={styles.activityIndicator}>
+                <ActivityIndicator animating size='large' />
+              </View>
+            )
+          }
+          {
+            !isFetching && (
+              <FlatList
+                contentContainerStyle={styles.listContainer}
+                data={this.getFlatListData()}
+                keyExtractor={this.keyExtractor}
+                renderItem={this.renderItem}
+              />
+            )
+          }
         </View>
       </SafeAreaView>
     );
