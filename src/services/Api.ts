@@ -74,6 +74,15 @@ class Api {
     });
   }
 
+  /**
+   * Загружает данные мерчанта.
+   *
+   * @param {string} partnerKey - ключ мерчанта, например: 'test-partner-key'
+   */
+  static getMerchantData<T = any>(partnerKey: string): AxiosPromise<T> {
+    return Api.get(`/${partnerKey}/page`);
+  }
+
 }
 
 export default Api;
