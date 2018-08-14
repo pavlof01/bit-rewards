@@ -52,7 +52,6 @@ class History extends React.Component<HistoryProps, State> {
   }
 
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
-    console.warn(JSON.stringify(listItemInfo, null, 2));
     const {
       item,
     } = listItemInfo;
