@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 });
 
 export interface HistoryProps {
-  fetchHistory: (page: number) => any;
+  fetchHistory: (page: number, perPage: number) => any;
   isFetching: boolean;
   items: any;
   error: any;
@@ -48,7 +48,7 @@ class History extends React.Component<HistoryProps, State> {
     const {
       fetchHistory,
     } = this.props;
-    fetchHistory(1);
+    fetchHistory(1, 15);
   }
 
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
@@ -111,7 +111,7 @@ class History extends React.Component<HistoryProps, State> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  fetchHistory: (page: number) => dispatch(HistoryActions.fetchTransactionList('test-partner-key', page)),
+  fetchHistory: (page: number, perPage: number) => dispatch(HistoryActions.fetchTransactionList(page, perPage)),
 });
 
 const mapStateToProps = (state: any) => ({

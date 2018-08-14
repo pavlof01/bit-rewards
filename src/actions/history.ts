@@ -10,9 +10,9 @@ export const FETCH_TRANSACTION_LIST_SUCCESS = 'FETCH_TRANSACTION_LIST_SUCCESS';
 export const FETCH_TRANSACTION_LIST_FAILURE = 'FETCH_TRANSACTION_LIST_FAILURE';
 
 export const HistoryActions = {
-  fetchTransactionList: (partnerKey: string, page: number) => createAction(
+  fetchTransactionList: (page: number, perPage: number) => createAction(
     FETCH_TRANSACTION_LIST_STARTED,
-    { partnerKey, page },
+    { page, perPage },
   ),
   fetchTransactionListSuccess: (items: any) => createAction(FETCH_TRANSACTION_LIST_SUCCESS, items),
   fetchTransactionListFailure: (error: any) => createAction(FETCH_TRANSACTION_LIST_FAILURE, error),

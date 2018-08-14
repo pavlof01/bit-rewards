@@ -65,12 +65,29 @@ class Api {
    *
    * @param {string} partnerKey - ключ мерчанта, например: 'test-partner-key'
    * @param {number} page - загружаемая страница.
+   * @param {number} perPage - количество элементов на странице.
    * @return {AxiosPromise<Object>}
    */
-  static getTransactionList<T = any>(partnerKey: string, page: number): AxiosPromise<T> {
+  static getTransactionList<T = any>(partnerKey: string, page: number, perPage: number): AxiosPromise<T> {
     return Api.get(`/${partnerKey}/transaction`, {
       params: {
         page,
+      },
+    });
+  }
+
+  /**
+   * Загружает список транзакций для мультиаккаунта.
+   *
+   * @param {number} page - загружаемая страница.
+   * @param {number} perPage - количество элементов на странице.
+   * @return {AxiosPromise<Object>}
+   */
+  static getPersonTransactionList<T = any>(page: number, perPage: number): AxiosPromise<T> {
+    return Api.get('/transaction', {
+      params: {
+        page,
+        perPage,
       },
     });
   }
