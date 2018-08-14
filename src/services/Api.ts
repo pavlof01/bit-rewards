@@ -65,6 +65,7 @@ class Api {
    *
    * @param {string} partnerKey - ключ мерчанта, например: 'test-partner-key'
    * @param {number} page - загружаемая страница.
+   * @return {AxiosPromise<Object>}
    */
   static getTransactionList<T = any>(partnerKey: string, page: number): AxiosPromise<T> {
     return Api.get(`/${partnerKey}/transaction`, {
@@ -78,6 +79,7 @@ class Api {
    * Загружает данные мерчанта.
    *
    * @param {string} partnerKey - ключ мерчанта, например: 'test-partner-key'
+   * @return {AxiosPromise<Object>}
    */
   static getMerchantData<T = any>(partnerKey: string): AxiosPromise<T> {
     return Api.get(`/${partnerKey}/page`);
