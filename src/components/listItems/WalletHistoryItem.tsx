@@ -72,8 +72,10 @@ export interface WalletHistoryItemContainerProps {
   onPress?: () => void;
   id: number;
   title: string;
-  dateString: string;
+  changedAt: number;
   balanceChange: number;
+  fiatChangeBalanceAmount: number;
+  fiatChangeBalanceCurrency: string;
 }
 export interface State { }
 
@@ -83,12 +85,13 @@ class WalletHistoryItem extends React.Component<WalletHistoryItemContainerProps,
       onPress,
       id,
       title,
-      dateString,
+      changedAt,
       balanceChange,
+      fiatChangeBalanceAmount,
     } = this.props;
     let displayDate = '--.--.--, --:-- am';
     try {
-      const date = moment(dateString, 'DD.MM.YY HH:mm');
+      const date = moment.unix(changedAt);
       displayDate = date.format('DD.MM.YYYY hh:mm a');
     } catch (err) {
       console.warn(JSON.stringify(err, null, 2));
@@ -99,7 +102,7 @@ class WalletHistoryItem extends React.Component<WalletHistoryItemContainerProps,
           <View style={styles.contentRow}>
             <View style={styles.historyTitleRow}>
               <Text style={styles.titleText}>
-                {`ID ${id}. ${displayDate}`}
+                {`ID ${id || 0}. ${displayDate}`}
               </Text>
             </View>
             <View style={styles.row}>
@@ -114,8 +117,8 @@ class WalletHistoryItem extends React.Component<WalletHistoryItemContainerProps,
               <Text style={[styles.addressNumber, styles.noData]}>
                 {'0x59************6552'}
               </Text>
-              <Text style={[styles.bitSubValue, styles.noData]}>
-                {'≈$1,2'}
+              <Text style={[styles.bitSubValue]}>
+                {`≈${fiatChangeBalanceAmount}₽`}
               </Text>
             </View>
             <View style={styles.row}>

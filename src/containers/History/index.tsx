@@ -60,8 +60,10 @@ class History extends React.Component<HistoryProps, State> {
       <WalletHistoryItem
         id={item.id}
         title={item.title}
-        dateString={item.confirmed}
-        balanceChange={item.balanceChange}
+        changedAt={item.changedAt}
+        balanceChange={item.changeBalanceAmount}
+        fiatChangeBalanceAmount={item.fiatChangeBalanceAmount}
+        fiatChangeBalanceCurrency={item.fiatChangeBalanceCurrency}
       />
     );
   }
