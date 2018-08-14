@@ -102,6 +102,16 @@ class Api {
     return Api.get(`/${partnerKey}/page`);
   }
 
+  /**
+   * Загружает данные для кошелька мерчанта.
+   *
+   * @param {string} partnerKey - ключ мерчанта, например: 'test-partner-key'
+   * @return {AxiosPromise<Object>}
+   */
+  static getMerchantWallet<T = any>(partnerKey: string): AxiosPromise<T> {
+    return Api.get(`/${partnerKey}/wallet`);
+  }
+
 }
 
 export default Api;

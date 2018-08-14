@@ -6,7 +6,7 @@ function* merchantWalletFlow(action: historyActions.HistoryActions) {
   try {
     // TODO: remove hardcoded token when auth api was ready.
     Api.setAuthToken('12345');
-    const responseData = yield call(Api.getMerchantData, action.payload.partnerKey);
+    const responseData = yield call(Api.getMerchantWallet, action.payload.partnerKey);
     yield put(merchantActions.MerchantActions.fetchWalletMerchantInfoSuccess(responseData.data));
   } catch (err) {
     yield put(merchantActions.MerchantActions.fetchWalletMerchantInfoFailure(err));
