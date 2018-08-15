@@ -31,6 +31,22 @@ export const specialOffersReducer = (state = initialState, action: sessionAction
         .set('isFetching', false)
         .set('error', action.payload);
     }
+    case specialOffersActions.FETCH_OFFER_REWARD_LIST_STARTED: {
+      return state
+        .set('isFetching', true)
+        .set('error', null);
+    }
+    case specialOffersActions.FETCH_OFFER_REWARD_LIST_SUCCESS: {
+      return state
+        .set('isFetching', false)
+        .set('rewardItems', List(action.payload))
+        .set('error', null);
+    }
+    case specialOffersActions.FETCH_OFFER_REWARD_LIST_FAILURE: {
+      return state
+        .set('isFetching', false)
+        .set('error', action.payload);
+    }
     case sessionActions.LOGOUT: {
       return initialState;
     }

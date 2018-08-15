@@ -16,3 +16,18 @@ function* offerActionsListFlow(action: specialOffersActions.SpecialOfferActions)
 export function* offerActionsListData() {
   yield takeLatest(specialOffersActions.FETCH_OFFER_ACTIONS_LIST_STARTED, offerActionsListFlow);
 }
+
+function* offerRewardListFlow(action: specialOffersActions.SpecialOfferActions) {
+  try {
+    // TODO: remove hardcoded token when auth api was ready.
+    Api.setAuthToken('12345');
+    const responseData = yield call(Api.getOfferRewardList, action.payload.page, action.payload.perPage);
+    yield put(specialOffersActions.SpecialOfferActions.fetchOfferRewardListSuccess(responseData.data.items));
+  } catch (err) {
+    yield put(specialOffersActions.SpecialOfferActions.fetchOfferRewardListFailure(err));
+  }
+}
+
+export function* offerRewardListData() {
+  yield takeLatest(specialOffersActions.FETCH_OFFER_REWARD_LIST_STARTED, offerRewardListFlow);
+}

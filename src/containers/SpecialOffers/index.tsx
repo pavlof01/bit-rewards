@@ -83,8 +83,10 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
   componentDidMount() {
     const {
       fetchOfferActionsList,
+      fetchOfferRewardList,
     } = this.props;
     fetchOfferActionsList(1, 15);
+    fetchOfferRewardList(1, 15);
   }
 
   handleChangeTab = (index: number) => this.setState({ activeTab: index });
@@ -97,7 +99,7 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
     const {
       activeTab,
     } = this.state;
-    console.warn(JSON.stringify(actionItems, null, 2));
+    console.warn(JSON.stringify(rewardItems, null, 2));
     switch (activeTab) {
       case EARN_BIT_TAB_INDEX:
         return actionItems;
@@ -169,6 +171,7 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
               <FlatList
                 contentContainerStyle={styles.listContainer}
                 data={flatListData}
+                extraData={this.props}
                 keyExtractor={this.keyExtractor}
                 renderItem={this.renderItem}
               />

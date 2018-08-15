@@ -4,12 +4,14 @@ import {
 } from './history';
 import {
   offerActionsListData,
+  offerRewardListData,
 } from './specialOffers';
 
 const rootSagas = function* root() {
   yield all([
     fork(transactionHistoryData),
     fork(offerActionsListData),
+    fork(offerRewardListData),
   ]);
 };
 
