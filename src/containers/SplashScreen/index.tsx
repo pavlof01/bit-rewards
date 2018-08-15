@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import { StyleSheet, Text, View } from 'react-native';
+import { AppActions } from '../../actions/app';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,10 +18,20 @@ const styles = StyleSheet.create({
   },
 });
 
-export interface Props { }
+export interface SplashScreenProps {
+  dynamicInitialRoute: () => void;
+}
+
 export interface State { }
 
-class SplashScreen extends React.Component<Props, State> {
+class SplashScreen extends React.Component<SplashScreenProps, State> {
+  componentDidMount() {
+    const {
+      dynamicInitialRoute,
+    } = this.props;
+    dynamicInitialRoute();
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -30,4 +43,11 @@ class SplashScreen extends React.Component<Props, State> {
   }
 }
 
-export default SplashScreen;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  dynamicInitialRoute: () => dispatch(AppActions.dynamicInitialRoute()),
+});
+
+const mapStateToProps = () => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SplashScreen);

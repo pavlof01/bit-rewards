@@ -4,8 +4,6 @@ import * as specialOffersActions from '../actions/specialOffers';
 
 function* offerActionsListFlow(action: specialOffersActions.SpecialOfferActions) {
   try {
-    // TODO: remove hardcoded token when auth api was ready.
-    Api.setAuthToken('12345');
     const responseData = yield call(Api.getOfferActionsList, action.payload.page, action.payload.perPage);
     yield put(specialOffersActions.SpecialOfferActions.fetchOfferActionsListSuccess(responseData.data.items));
   } catch (err) {
@@ -19,8 +17,6 @@ export function* offerActionsListData() {
 
 function* offerRewardListFlow(action: specialOffersActions.SpecialOfferActions) {
   try {
-    // TODO: remove hardcoded token when auth api was ready.
-    Api.setAuthToken('12345');
     const responseData = yield call(Api.getOfferRewardList, action.payload.page, action.payload.perPage);
     yield put(specialOffersActions.SpecialOfferActions.fetchOfferRewardListSuccess(responseData.data.items));
   } catch (err) {

@@ -8,7 +8,7 @@ const getStateForAction = (action: any, state?: any) => {
   return AppNavigator.router.getStateForAction(action, state);
 };
 
-const firstAction = AppNavigator.router.getActionForPathAndParams('Main');
+const firstAction = AppNavigator.router.getActionForPathAndParams('SplashScreen');
 const initialState = getStateForAction(firstAction);
 
 export const navigationReducer = (state = initialState, action: any) => {
@@ -16,6 +16,11 @@ export const navigationReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case sessionActions.LOGOUT: {
       return state;
+    }
+    case sessionActions.LOGIN_SUCCESS: {
+      const navigateWalletMerchantAction = NavigationActions.navigate({ routeName: 'Main' });
+      nextState = getStateForAction(navigateWalletMerchantAction, state);
+      break;
     }
     case navigationActions.OPEN_WALLET_MERCHANT: {
       const navigateWalletMerchantAction = NavigationActions.navigate({ routeName: 'WalletMerchant' });
