@@ -13,6 +13,9 @@ import {
   NavigationState,
   SafeAreaView,
 } from 'react-navigation';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { MerchantActions } from '../../actions/merchant';
 import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
 import EarnBitItem from '../../components/listItems/EarnBitItem';
@@ -110,7 +113,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export interface Props {
+export interface WalletMerchantProps {
+  fetchWalletMerchantInfo: (partnerKey: string) => any;
   navigation: NavigationScreenProp<NavigationState>;
 }
 
@@ -122,13 +126,20 @@ const EARN_BIT_TAB_INDEX = 0;
 const REDEEM_BIT_TAB_INDEX = 1;
 const COUPONS_TAB_INDEX = 2;
 
-class WalletMerchant extends React.Component<Props, WalletMerchantState> {
-  constructor(props: Props) {
+class WalletMerchant extends React.Component<WalletMerchantProps, WalletMerchantState> {
+  constructor(props: WalletMerchantProps) {
     super(props);
 
     this.state = {
       activeTab: 0,
     };
+  }
+
+  componentDidMount() {
+    const {
+      fetchWalletMerchantInfo,
+    } = this.props;
+    fetchWalletMerchantInfo('test-partner-key');
   }
 
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
@@ -256,4 +267,13 @@ class WalletMerchant extends React.Component<Props, WalletMerchantState> {
   }
 }
 
-export default WalletMerchant;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchWalletMerchantInfo: (partnerKey: string) => dispatch(MerchantActions.fetchWalletMerchantInfo(partnerKey)),
+});
+
+const mapStateToProps = (state: any) => ({
+  isFetching: state.merchant.get('isFetching'),
+  error: state.merchant.get('error'),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(WalletMerchant);
