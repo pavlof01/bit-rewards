@@ -56,13 +56,19 @@ const styles = StyleSheet.create({
 const EARN_BIT_TAB_INDEX = 0;
 const REDEEM_BIT_TAB_INDEX = 1;
 
-export interface Props { }
+export interface SpecialOffersProps {
+  isFetching: boolean;
+  actionItems: any;
+  rewardItems: any;
+  error: any;
+}
+
 export interface SpecialOffersState {
   activeTab: number;
 }
 
-class SpecialOffers extends React.Component<Props, SpecialOffersState> {
-  constructor(props: Props) {
+class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersState> {
+  constructor(props: SpecialOffersProps) {
     super(props);
 
     this.state = {
@@ -74,41 +80,17 @@ class SpecialOffers extends React.Component<Props, SpecialOffersState> {
 
   getFlatListData = () => {
     const {
+      actionItems,
+      rewardItems,
+    } = this.props;
+    const {
       activeTab,
     } = this.state;
-    const earnBitListData = [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-    ];
-    const redeemBitListData = [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-    ];
     switch (activeTab) {
       case EARN_BIT_TAB_INDEX:
-        return earnBitListData;
+        return actionItems;
       case REDEEM_BIT_TAB_INDEX:
-        return redeemBitListData;
+        return rewardItems;
       default:
         return [];
     }
@@ -172,6 +154,10 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 });
 
 const mapStateToProps = (state: any) => ({
+  isFetching: state.specialOffers.get('isFetching'),
+  actionItems: state.specialOffers.get('actionItems').toJS(),
+  rewardItems: state.specialOffers.get('rewardItems').toJS(),
+  error: state.specialOffers.get('error'),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpecialOffers);
