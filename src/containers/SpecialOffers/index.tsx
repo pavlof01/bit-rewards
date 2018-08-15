@@ -99,6 +99,7 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
     const {
       activeTab,
     } = this.state;
+    console.warn(JSON.stringify(rewardItems, null, 2));
     switch (activeTab) {
       case EARN_BIT_TAB_INDEX:
         return actionItems;
@@ -126,7 +127,11 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
         );
       case REDEEM_BIT_TAB_INDEX:
         return (
-          <SpendBitItem />
+          <SpendBitItem
+            brand={item.brand}
+            title={item.reward.title}
+            description={item.reward.description}
+          />
         );
       default:
         return null;

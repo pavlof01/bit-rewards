@@ -75,6 +75,9 @@ const styles = StyleSheet.create({
 
 export interface EarnBitItemProps {
   onPress?: () => void;
+  brand?: string;
+  title?: string;
+  description?: string;
 }
 export interface State { }
 
@@ -89,18 +92,23 @@ class SpendBitItem extends React.Component<EarnBitItemProps, State> {
   }
 
   render() {
+    const {
+      brand,
+      title,
+      description,
+    } = this.props;
     return (
       <ItemContainer>
         <View style={styles.container}>
           <View style={styles.infoColumn}>
             <View style={styles.merchantTitleWrapper}>
-              <Text style={styles.merchantText}>{'McDonalds '}</Text><Text style={styles.merchantLightText}>{'/Starbux'}</Text>
+              <Text style={styles.merchantText}>{`${brand || ''} `}</Text><Text style={styles.merchantLightText}>{'/Starbux'}</Text>
             </View>
             <Text style={styles.discountText}>
-              {'Discount $2'}
+              {title}
             </Text>
             <Text style={styles.descriptionText}>
-              {'Use $2 discount for purchase over $5000'}
+              {description}
             </Text>
             <View style={styles.buttonContainer}>
               <Touchable onPress={this.handleClick}>
