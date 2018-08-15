@@ -5,13 +5,13 @@ import {
   StatusBar,
   FlatList,
   ListRenderItemInfo,
-  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { HistoryActions } from '../../actions/history';
 import WalletHistoryItem from '../../components/listItems/WalletHistoryItem';
+import CentredActivityIndicator from '../../components/CentredActivityIndicator';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -25,11 +25,6 @@ const styles = StyleSheet.create({
   listContainer: {
     paddingTop: 15,
     paddingBottom: 9,
-  },
-  activityIndicator: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
   },
 });
 
@@ -89,9 +84,7 @@ class History extends React.Component<HistoryProps, State> {
         <View style={styles.container}>
           {
             isFetching && (
-              <View style={styles.activityIndicator}>
-                <ActivityIndicator animating size='large' />
-              </View>
+              <CentredActivityIndicator />
             )
           }
           {
