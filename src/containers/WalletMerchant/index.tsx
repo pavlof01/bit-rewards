@@ -149,15 +149,26 @@ class WalletMerchant extends React.Component<WalletMerchantProps, WalletMerchant
     switch (activeTab) {
       case EARN_BIT_TAB_INDEX:
         return (
-          <EarnBitItem />
+          <EarnBitItem
+            brand={'BitRewards'}
+            description={'Register and get 5% cashback for this purchase in crypto!'}
+          />
         );
       case REDEEM_BIT_TAB_INDEX:
         return (
-          <SpendBitItem />
+          <SpendBitItem
+            brand={'McDonalds'}
+            title={'Discount $2'}
+            description={'Use $2 discount for purchase over $5000'}
+          />
         );
       case COUPONS_TAB_INDEX:
         return (
-          <SpendBitItem />
+          <SpendBitItem
+            brand={'McDonalds'}
+            title={'Discount $2'}
+            description={'Use $2 discount for purchase over $5000'}
+          />
         );
       default:
         return null;
