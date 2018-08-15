@@ -15,6 +15,8 @@ import TabBar from '../../components/TabBar';
 import TabBarButton from '../../components/TabBar/TabBarButton';
 import EarnBitItem from '../../components/listItems/EarnBitItem';
 import SpendBitItem from '../../components/listItems/SpendBitItem';
+import CentredActivityIndicator from '../../components/CentredActivityIndicator';
+import { SpecialOfferActions } from '../../actions/specialOffers';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -57,6 +59,8 @@ const EARN_BIT_TAB_INDEX = 0;
 const REDEEM_BIT_TAB_INDEX = 1;
 
 export interface SpecialOffersProps {
+  fetchOfferActionsList: (page: number, perPage: number) => any;
+  fetchOfferRewardList: (page: number, perPage: number) => any;
   isFetching: boolean;
   actionItems: any;
   rewardItems: any;
@@ -74,6 +78,13 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
     this.state = {
       activeTab: 0,
     };
+  }
+
+  componentDidMount() {
+    const {
+      fetchOfferActionsList,
+    } = this.props;
+    fetchOfferActionsList(1, 15);
   }
 
   handleChangeTab = (index: number) => this.setState({ activeTab: index });
@@ -117,6 +128,10 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
   keyExtractor = (item: any, index: number) => `offer-${index}`;
 
   render() {
+    const {
+      isFetching,
+    } = this.props;
+    const flatListData = this.getFlatListData();
     return (
       <SafeAreaView style={styles.safeContainer}>
         <View style={styles.container}>
@@ -138,12 +153,20 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
               </TabBar>
             </View>
           </View>
-          <FlatList
-            contentContainerStyle={styles.listContainer}
-            data={this.getFlatListData()}
-            keyExtractor={this.keyExtractor}
-            renderItem={this.renderItem}
-          />
+          { flatListData.length === 0 && isFetching && (
+              <CentredActivityIndicator />
+            )
+          }
+          {
+            !(flatListData.length === 0 && isFetching) && (
+              <FlatList
+                contentContainerStyle={styles.listContainer}
+                data={flatListData}
+                keyExtractor={this.keyExtractor}
+                renderItem={this.renderItem}
+              />
+            )
+          }
         </View>
       </SafeAreaView>
     );
@@ -151,6 +174,8 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchOfferActionsList: (page: number, perPage: number) => dispatch(SpecialOfferActions.fetchOfferActionsList(page, perPage)),
+  fetchOfferRewardList: (page: number, perPage: number) => dispatch(SpecialOfferActions.fetchOfferRewardList(page, perPage)),
 });
 
 const mapStateToProps = (state: any) => ({
