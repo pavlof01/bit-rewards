@@ -112,6 +112,38 @@ class Api {
     return Api.get(`/${partnerKey}/wallet`);
   }
 
+  /**
+   * Загружает actions list для экрана special offers.
+   *
+   * @param {number} page - загружаемая страница.
+   * @param {number} perPage - количество элементов на странице.
+   * @return {AxiosPromise<Object>}
+   */
+  static getOfferActionsList<T = any>(page: number, perPage: number): AxiosPromise<T> {
+    return Api.get('/offer/action', {
+      params: {
+        page,
+        perPage,
+      },
+    });
+  }
+
+  /**
+   * Загружает reward list для экрана special offers.
+   *
+   * @param {number} page - загружаемая страница.
+   * @param {number} perPage - количество элементов на странице.
+   * @return {AxiosPromise<Object>}
+   */
+  static getOfferRewardList<T = any>(page: number, perPage: number): AxiosPromise<T> {
+    return Api.get('/offer/reward', {
+      params: {
+        page,
+        perPage,
+      },
+    });
+  }
+
 }
 
 export default Api;
