@@ -6,6 +6,8 @@ import {
   View,
   StatusBar,
 } from 'react-native';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import { SafeAreaView } from 'react-navigation';
 import Search from '../../components/Search';
 import Carousel from '../../components/Carousel';
@@ -166,4 +168,10 @@ class SpecialOffers extends React.Component<Props, SpecialOffersState> {
   }
 }
 
-export default SpecialOffers;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+});
+
+const mapStateToProps = (state: any) => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpecialOffers);
