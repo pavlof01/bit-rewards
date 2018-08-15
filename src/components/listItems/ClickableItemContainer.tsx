@@ -4,6 +4,7 @@ import {
   View,
   Image,
 } from 'react-native';
+import * as SvgUri from 'react-native-svg-uri';
 import ItemContainer from './ItemContainer';
 import Touchable from '../Touchable';
 
@@ -30,6 +31,9 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     backgroundColor: '#ff764a',
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   chevronBox: {
     height: 20,
@@ -47,6 +51,7 @@ const styles = StyleSheet.create({
 export interface ClickableItemContainerProps {
   children: JSX.Element | JSX.Element[];
   onPress?: () => void;
+  image?: string;
   highlight?: boolean;
 }
 export interface State { }
@@ -57,13 +62,24 @@ class ClickableItemContainer extends React.Component<ClickableItemContainerProps
       children,
       onPress,
       highlight,
+      image,
     } = this.props;
     return (
       <ItemContainer highlight={highlight}>
         <Touchable onPress={onPress}>
           <View style={styles.container}>
             <View style={styles.iconColumn}>
-              <View style={styles.iconBox} />
+              <View style={styles.iconBox}>
+                { (typeof image === 'string') && (
+                    // @ts-ignore
+                    <SvgUri
+                      width='50'
+                      height='50'
+                      source={{uri: image}}
+                    />
+                  )
+                }
+              </View>
             </View>
             <View style={styles.itemContainer}>
               {children}

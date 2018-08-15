@@ -120,6 +120,7 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
       case EARN_BIT_TAB_INDEX:
         return (
           <EarnBitItem
+            image={'https://crm.inprg.com/assets/icons/gift.svg'}
             brand={item.brand}
             description={item.action.description}
           />

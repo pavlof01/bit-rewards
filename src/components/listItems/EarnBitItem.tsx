@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
 export interface EarnBitItemProps {
   brand?: string;
   description?: string;
+  image?: string;
   onPress?: () => void;
 }
 export interface State { }
@@ -36,10 +37,14 @@ class EarnBitItem extends React.Component<EarnBitItemProps, State> {
     const {
       brand,
       description,
+      image,
       onPress,
     } = this.props;
     return (
-      <ClickableItemContainer onPress={onPress}>
+      <ClickableItemContainer
+        onPress={onPress}
+        image={image}
+      >
         <View style={styles.container}>
           <Text style={styles.titleText}>
             {brand || 'BitRewards'}
