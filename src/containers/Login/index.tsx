@@ -1,33 +1,53 @@
 import * as React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  StatusBar,
+} from 'react-native';
+import { SafeAreaView } from 'react-navigation';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import AuthLogo from '../../components/AuthLogo';
 
 const styles = StyleSheet.create({
+  safeContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  centerText: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
   },
 });
 
-export interface Props { }
+export interface LoginProps {
+  fetchHistory: (page: number, perPage: number) => any;
+  isFetching: boolean;
+  items: any;
+  error: any;
+}
+
 export interface State { }
 
-class Login extends React.Component<Props, State> {
+class Login extends React.Component<LoginProps, State> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.centerText}>
-          Empty Login
-        </Text>
-      </View>
+      <SafeAreaView style={styles.safeContainer}>
+        <StatusBar
+          barStyle='dark-content'
+          backgroundColor='#ffffff'
+        />
+        <View style={styles.container}>
+          <AuthLogo />
+        </View>
+      </SafeAreaView>
     );
   }
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+});
+
+const mapStateToProps = (state: any) => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

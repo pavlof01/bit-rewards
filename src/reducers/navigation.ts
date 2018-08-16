@@ -18,13 +18,13 @@ export const navigationReducer = (state = initialState, action: any) => {
       return state;
     }
     case sessionActions.LOGIN_REQUEST: {
-      const resetToMainAction = StackActions.reset({
+      const resetToLoginAction = StackActions.reset({
         index: 0,
         actions: [
           NavigationActions.navigate({ routeName: 'Login' }),
         ],
       });
-      nextState = getStateForAction(resetToMainAction, state);
+      nextState = getStateForAction(resetToLoginAction, state);
       break;
     }
     case sessionActions.LOGIN_SUCCESS: {
