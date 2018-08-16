@@ -1,13 +1,18 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { AsyncStorage } from 'react-native';
 import Api from '../services/Api';
 import * as appActions from '../actions/app';
 import * as sessionActions from '../actions/session';
 
 function* dynamicInitialRouteFlow() {
   try {
-    // TODO: remove hardcoded token when auth api was ready.
-    Api.setAuthToken('12345');
-    yield put(sessionActions.SessionActions.loginSuccess());
+    const token = yield call(AsyncStorage.getItem, Api.tokenName);
+    if (!token) {
+      yield put(sessionActions.SessionActions.loginRequest());
+    } else {
+      Api.setAuthToken(token);
+      yield put(sessionActions.SessionActions.loginSuccess());
+    }
   } catch (err) {
     yield put(sessionActions.SessionActions.logout());
   }

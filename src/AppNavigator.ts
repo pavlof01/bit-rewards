@@ -40,8 +40,14 @@ const AppNavigator = createStackNavigator({
     screen: SplashScreen,
     navigationOptions: { header: null },
   },
-  Login: { screen: Login },
-  SignUp: { screen: SignUp },
+  Login: {
+    screen: Login,
+    navigationOptions: { header: null },
+  },
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: { header: null },
+  },
   RecoverPassword: { screen: RecoverPassword },
   WalletMerchant: {
     screen: WalletMerchant,

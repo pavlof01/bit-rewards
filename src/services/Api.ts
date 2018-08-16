@@ -7,6 +7,7 @@ import axios, {
 const API_BASE_URL = 'http://crm.inprg.com/api-client';
 
 class Api {
+  static tokenName = 'authToken';
   private static instance: Api;
   private static authToken: string;
   private axiosInstance: AxiosInstance;
