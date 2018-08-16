@@ -46,22 +46,6 @@ class Api {
   }
 
   /**
-   * Загружает пагинированный список action'ов для offer'ов.
-   *
-   * @param {number} page - загружаемая страница.
-   * @param {number} perPage - количество элементов на странице.
-   * @return {AxiosPromise<Object>}
-   */
-  static getOfferAction<T = any>(page: number, perPage: number): AxiosPromise<T> {
-    return Api.get('/offer/action', {
-      params: {
-        page,
-        perPage,
-      },
-    });
-  }
-
-  /**
    * Загружает список транзакций для определенного мерчанта.
    *
    * @param {string} partnerKey - ключ мерчанта, например: 'test-partner-key'
