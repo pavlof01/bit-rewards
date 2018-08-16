@@ -1,4 +1,4 @@
-import { NavigationActions } from 'react-navigation';
+import { StackActions, NavigationActions } from 'react-navigation';
 import AppNavigator from '../AppNavigator';
 
 import * as navigationActions from '../actions/navigation';
@@ -18,8 +18,13 @@ export const navigationReducer = (state = initialState, action: any) => {
       return state;
     }
     case sessionActions.LOGIN_SUCCESS: {
-      const navigateWalletMerchantAction = NavigationActions.navigate({ routeName: 'Main' });
-      nextState = getStateForAction(navigateWalletMerchantAction, state);
+      const resetToMainAction = StackActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Main' }),
+        ],
+      });
+      nextState = getStateForAction(resetToMainAction, state);
       break;
     }
     case navigationActions.OPEN_WALLET_MERCHANT: {
@@ -28,8 +33,8 @@ export const navigationReducer = (state = initialState, action: any) => {
       break;
     }
     case navigationActions.OPEN_WALLET_HISTORY: {
-      const navigateWalletMerchantAction = NavigationActions.navigate({ routeName: 'History' });
-      nextState = getStateForAction(navigateWalletMerchantAction, state);
+      const navigateWalletHistoryAction = NavigationActions.navigate({ routeName: 'History' });
+      nextState = getStateForAction(navigateWalletHistoryAction, state);
       break;
     }
     default:
