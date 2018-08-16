@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export interface ErrorBoundaryProps {
   children: JSX.Element | JSX.Element[];
-  renderErrorView?: (error: any, info: any) => JSX.Element | JSX.Element[];
+  renderErrorView?: (error: any, info: any) => null | JSX.Element | JSX.Element[];
 }
 
 export interface ErrorBoundaryState {

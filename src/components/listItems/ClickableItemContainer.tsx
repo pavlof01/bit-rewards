@@ -4,9 +4,9 @@ import {
   View,
   Image,
 } from 'react-native';
-import * as SvgUri from 'react-native-svg-uri';
 import ItemContainer from './ItemContainer';
 import Touchable from '../Touchable';
+import BitImage from '../BitImage';
 
 const styles = StyleSheet.create({
   container: {
@@ -72,10 +72,10 @@ class ClickableItemContainer extends React.Component<ClickableItemContainerProps
               <View style={styles.iconBox}>
                 { (typeof image === 'string') && (
                     // @ts-ignore
-                    <SvgUri
+                    <BitImage
                       width='50'
                       height='50'
-                      source={{uri: image}}
+                      uri={image}
                     />
                   )
                 }
