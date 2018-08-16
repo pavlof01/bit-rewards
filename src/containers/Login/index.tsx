@@ -8,6 +8,7 @@ import { SafeAreaView } from 'react-navigation';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import AuthLogo from '../../components/AuthLogo';
+import PrimaryButton from '../../components/PrimaryButton';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -15,6 +16,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   container: {
+    flex: 1,
+  },
+  logoWrapper: {
+    justifyContent: 'center',
     flex: 1,
   },
 });
@@ -37,7 +42,12 @@ class Login extends React.Component<LoginProps, State> {
           backgroundColor='#ffffff'
         />
         <View style={styles.container}>
-          <AuthLogo />
+          <View style={styles.logoWrapper}>
+            <AuthLogo />
+          </View>
+          <PrimaryButton
+            title={'Log in'}
+          />
         </View>
       </SafeAreaView>
     );
