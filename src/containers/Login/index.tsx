@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import AuthLogo from '../../components/AuthLogo';
 import PrimaryButton from '../../components/PrimaryButton';
 import SocialButton from '../../components/Login/SocialButton';
+import AuthInputField from '../../components/Login/AuthInputField';
 import * as sessionActions from '../../actions/session';
 
 const styles = StyleSheet.create({
@@ -87,7 +88,12 @@ class Login extends React.Component<LoginProps, State> {
               <AuthLogo />
             </View>
             <View style={styles.formWrapper}>
-
+              <AuthInputField
+                placeholder={'Email'}
+              />
+              <AuthInputField
+                placeholder={'Password'}
+              />
             </View>
             <View style={styles.buttonWrapper}>
               <PrimaryButton
