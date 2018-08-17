@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontFamily: 'ProximaNova-Regular',
     lineHeight: 17,
-    height: 18,
+    height: 20,
     paddingTop: 0,
     paddingBottom: 0,
   },
