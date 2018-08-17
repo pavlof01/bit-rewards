@@ -9,7 +9,10 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import MerchantItem from '../../components/listItems/MerchantItem';
+import Touchable from '../../components/Touchable';
+import * as sessionActions from '../../actions/session';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -58,14 +61,33 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     textAlign: 'center',
   },
+  logoutButtonContainer: {
+    top: 0,
+    right: 0,
+    position: 'absolute',
+  },
+  logoutButton: {
+    padding: 17,
+  },
+  logoutButtonText: {
+    fontSize: 17,
+    color: '#ff764a',
+    fontFamily: 'ProximaNova-Regular',
+  },
 });
 
 export interface ProfileProps {
+  logout: () => any;
 }
 
 export interface State { }
 
-class Profile extends React.Component<Profile, State> {
+class Profile extends React.Component<ProfileProps, State> {
+
+  logoutPress = () => {
+    const { logout } = this.props;
+    logout();
+  }
 
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
     return (
@@ -94,6 +116,15 @@ class Profile extends React.Component<Profile, State> {
                 {'User Name'}
               </Text>
             </View>
+            <View style={styles.logoutButtonContainer}>
+              <Touchable onPress={this.logoutPress}>
+                <View style={styles.logoutButton}>
+                  <Text style={styles.logoutButtonText}>
+                    {'Log out'}
+                  </Text>
+                </View>
+              </Touchable>
+            </View>
           </View>
           <FlatList
             contentContainerStyle={styles.listContainer}
@@ -109,7 +140,8 @@ class Profile extends React.Component<Profile, State> {
   }
 }
 
-const mapDispatchToProps = () => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  logout: () => dispatch(sessionActions.SessionActions.logout()),
 });
 
 const mapStateToProps = () => ({

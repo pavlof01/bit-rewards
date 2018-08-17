@@ -11,12 +11,23 @@ function* loginFlow() {
     Api.setAuthToken(token);
     yield put(sessionActions.SessionActions.loginSuccess());
   } catch (err) {
-    console.warn(err);
   }
 }
 
 export function* loginData() {
   yield takeLatest(sessionActions.LOGIN, loginFlow);
+}
+
+function* logoutFlow() {
+  try {
+    yield call(AsyncStorage.removeItem, Api.tokenName);
+    Api.setAuthToken('');
+  } catch (err) {
+  }
+}
+
+export function* logoutData() {
+  yield takeLatest(sessionActions.LOGOUT, logoutFlow);
 }
 
 function* dynamicInitialRouteFlow() {

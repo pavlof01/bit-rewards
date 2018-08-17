@@ -15,7 +15,14 @@ export const navigationReducer = (state = initialState, action: any) => {
   let nextState;
   switch (action.type) {
     case sessionActions.LOGOUT: {
-      return state;
+      const resetToLoginAction = StackActions.reset({
+        index: 0,
+        actions: [
+          NavigationActions.navigate({ routeName: 'Login' }),
+        ],
+      });
+      nextState = getStateForAction(resetToLoginAction, state);
+      break;
     }
     case sessionActions.LOGIN_REQUEST: {
       const resetToLoginAction = StackActions.reset({
