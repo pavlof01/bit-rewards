@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   },
   socialIconsWrapper: {
     flexDirection: 'row',
+    width: 272,
     height: 52,
     marginTop: 15,
   },
