@@ -24,6 +24,10 @@ const styles = StyleSheet.create({
     color: '#303645',
     fontSize: 17,
     fontFamily: 'ProximaNova-Regular',
+    lineHeight: 17,
+    height: 18,
+    paddingTop: 0,
+    paddingBottom: 0,
   },
 });
 
