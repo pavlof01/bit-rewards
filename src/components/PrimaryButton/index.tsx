@@ -7,18 +7,24 @@ import {
 import Touchable from '../Touchable';
 
 const styles = StyleSheet.create({
-  touchable: {
+  container: {
     flex: 1,
     height: 48,
   },
-  container: {
-    justifyContent: 'flex-start',
+  touchable: {
+    flex: 1,
+    top: 0,
+    bottom: 0,
+    height: 48,
+    padding: 0,
+  },
+  buttonContainer: {
     alignItems: 'center',
-    flexDirection: 'row',
     paddingTop: 18,
     paddingBottom: 14,
     paddingStart: 6,
     paddingEnd: 6,
+    width: '100%',
     height: 48,
     backgroundColor: '#ff764a',
     borderRadius: 4,
@@ -47,13 +53,18 @@ class PrimaryButton extends React.Component<PrimaryButtonProps, State> {
       onPress,
     } = this.props;
     return (
-      <Touchable onPress={onPress} style={styles.touchable}>
-        <View style={styles.container}>
-          <Text style={[styles.title]}>
-            {title}
-          </Text>
-        </View>
-      </Touchable>
+      <View style={styles.container}>
+        <Touchable
+          onPress={onPress}
+          style={styles.touchable}
+        >
+          <View style={styles.buttonContainer}>
+            <Text style={[styles.title]}>
+              {title}
+            </Text>
+          </View>
+        </Touchable>
+      </View>
     );
   }
 }

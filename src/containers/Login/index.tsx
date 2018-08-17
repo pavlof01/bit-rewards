@@ -10,7 +10,8 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import AuthLogo from '../../components/AuthLogo';
 import PrimaryButton from '../../components/PrimaryButton';
-import SocialButton from '../../components/Login/SocialButton'
+import SocialButton from '../../components/Login/SocialButton';
+import * as sessionActions from '../../actions/session';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -37,9 +38,10 @@ const styles = StyleSheet.create({
     marginBottom: 33,
   },
   buttonWrapper: {
-    paddingTop: 10,
-    paddingBottom: 10,
+    marginTop: 10,
+    marginBottom: 10,
     width: 212,
+    height: 48,
   },
   socialWrapper: {
     flex: 1,
@@ -61,16 +63,15 @@ const styles = StyleSheet.create({
 });
 
 export interface LoginProps {
-  fetchHistory: (page: number, perPage: number) => any;
-  isFetching: boolean;
-  items: any;
-  error: any;
+  login: () => any;
 }
 
 export interface State { }
 
 class Login extends React.Component<LoginProps, State> {
   onLoginPress = () => {
+    const { login } = this.props;
+    login();
   }
 
   render() {
@@ -114,6 +115,7 @@ class Login extends React.Component<LoginProps, State> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+  login: () => dispatch(sessionActions.SessionActions.login()),
 });
 
 const mapStateToProps = (state: any) => ({
