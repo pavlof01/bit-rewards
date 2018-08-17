@@ -3,6 +3,8 @@ import {
   StyleSheet,
   TextInput,
   View,
+  Image,
+  ImageSourcePropType,
 } from 'react-native';
 
 const styles = StyleSheet.create({
@@ -27,6 +29,7 @@ const styles = StyleSheet.create({
 
 export interface AuthInputFieldProps {
   placeholder: string;
+  icon: ImageSourcePropType;
 }
 export interface State { }
 
@@ -34,10 +37,13 @@ class AuthInputField extends React.Component<AuthInputFieldProps, State> {
   render() {
     const {
       placeholder,
+      icon,
     } = this.props;
     return (
       <View style={styles.container}>
-        <View style={styles.iconWrapper} />
+        <View style={styles.iconWrapper}>
+          <Image source={icon} />
+        </View>
         <TextInput
           style={styles.input}
           placeholder={placeholder}

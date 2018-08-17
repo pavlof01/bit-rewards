@@ -90,9 +90,11 @@ class Login extends React.Component<LoginProps, State> {
             <View style={styles.formWrapper}>
               <AuthInputField
                 placeholder={'Email'}
+                icon={require('../../img/ic_login_email.png')}
               />
               <AuthInputField
                 placeholder={'Password'}
+                icon={require('../../img/ic_login_password.png')}
               />
             </View>
             <View style={styles.buttonWrapper}>
