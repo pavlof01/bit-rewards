@@ -7,6 +7,10 @@ import {
 import Touchable from '../Touchable';
 
 const styles = StyleSheet.create({
+  touchable: {
+    flex: 1,
+    height: 48,
+  },
   container: {
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -28,14 +32,10 @@ const styles = StyleSheet.create({
     fontFamily: 'ProximaNova-Semibold',
     color: '#fff',
   },
-  active: {
-    color: '#303645',
-  },
 });
 
 export interface PrimaryButtonProps {
   title?: string;
-  active?: boolean;
   onPress?: () => void;
 }
 export interface State { }
@@ -44,13 +44,12 @@ class PrimaryButton extends React.Component<PrimaryButtonProps, State> {
   render() {
     const {
       title,
-      active,
       onPress,
     } = this.props;
     return (
-      <Touchable onPress={onPress} style={{ flex: 1, height: 44, }}>
+      <Touchable onPress={onPress} style={styles.touchable}>
         <View style={styles.container}>
-          <Text style={[styles.title, active ? styles.active : {}]}>
+          <Text style={[styles.title]}>
             {title}
           </Text>
         </View>
