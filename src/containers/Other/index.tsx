@@ -9,6 +9,7 @@ import {
 import { SafeAreaView } from 'react-navigation';
 import { connect } from 'react-redux';
 import OtherOptionItem from '../../components/listItems/OtherOptionItem'
+import Separator from '../../components/listItems/Separator'
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -48,6 +49,12 @@ class Other extends React.Component<Props, State> {
     );
   }
 
+  renderSeparator = () => {
+    return (
+      <Separator />
+    );
+  }
+
   keyExtractor = (item: any, index: number) => `other-${index}`;
 
   render() {
@@ -66,6 +73,7 @@ class Other extends React.Component<Props, State> {
             extraData={this.props}
             keyExtractor={this.keyExtractor}
             renderItem={this.renderItem}
+            ItemSeparatorComponent={this.renderSeparator}
           />
         </View>
       </SafeAreaView>
