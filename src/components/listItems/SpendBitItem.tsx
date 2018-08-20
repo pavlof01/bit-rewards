@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import ItemContainer from './ItemContainer';
 import Touchable from '../Touchable';
+import BitImage from '../BitImage'
 
 const styles = StyleSheet.create({
   container: {
@@ -23,12 +24,14 @@ const styles = StyleSheet.create({
   iconColumn: {
     flexDirection: 'column',
   },
-  merchantIcon: {
+  iconBox: {
     width: 50,
     height: 50,
     borderRadius: 25,
     backgroundColor: '#ff764a',
-    alignSelf: 'center',
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   merchantTitleWrapper: {
     flexDirection: 'row',
@@ -75,6 +78,7 @@ const styles = StyleSheet.create({
 
 export interface EarnBitItemProps {
   onPress?: () => void;
+  image?: string;
   brand?: string;
   title?: string;
   description?: string;
@@ -96,6 +100,7 @@ class SpendBitItem extends React.Component<EarnBitItemProps, State> {
       brand,
       title,
       description,
+      image,
     } = this.props;
     return (
       <ItemContainer>
@@ -121,7 +126,17 @@ class SpendBitItem extends React.Component<EarnBitItemProps, State> {
             </View>
           </View>
           <View style={styles.iconColumn}>
-            <View style={styles.merchantIcon} />
+            <View style={styles.iconBox}>
+              { (typeof image === 'string') && (
+                // @ts-ignore
+                <BitImage
+                  width='50'
+                  height='50'
+                  uri={image}
+                />
+              )
+              }
+            </View>
           </View>
         </View>
       </ItemContainer>

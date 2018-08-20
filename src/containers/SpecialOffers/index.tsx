@@ -142,6 +142,7 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
       case REDEEM_BIT_TAB_INDEX:
         return (
           <SpendBitItem
+            image={'https://crm.inprg.com/assets/icons/gift.svg'}
             brand={item.brand}
             title={item.reward.title}
             description={item.reward.description}
