@@ -14,7 +14,11 @@ import { NavigationActions } from '../../actions/navigation';
 import { WalletActions } from '../../actions/wallet';
 import MerchantItem from '../../components/listItems/MerchantItem';
 import Touchable from '../../components/Touchable';
-import CentredActivityIndicator from '../../components/CentredActivityIndicator'
+import CentredActivityIndicator from '../../components/CentredActivityIndicator';
+import {
+  totalBalanceAmountSelector,
+  totalFiatAmountSelector,
+} from '../../selectors/wallet';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -84,6 +88,8 @@ export interface WalletProps {
   isFetching: boolean;
   walletItems: any;
   error: any;
+  totalBalanceAmount: number;
+  totalFiatAmount: number;
 }
 export interface State { }
 
@@ -124,6 +130,8 @@ class Wallet extends React.Component<WalletProps, State> {
     const {
       openWalletHistory,
       isFetching,
+      totalBalanceAmount,
+      totalFiatAmount,
     } = this.props;
     const flatListData = this.getFlatListData();
     return (
@@ -139,10 +147,10 @@ class Wallet extends React.Component<WalletProps, State> {
                 {'Summary balance'}
               </Text>
               <Text style={styles.balance}>
-                {'27 500 BIT'}
+                {`${totalBalanceAmount} BIT`}
               </Text>
               <Text style={styles.subBalance}>
-                {'≈$27,5'}
+                {`≈$${totalFiatAmount}`}
               </Text>
             </View>
             <View style={styles.historyButtonContainer}>
@@ -185,6 +193,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const mapStateToProps = (state: any) => ({
   isFetching: state.wallet.get('isFetching'),
   walletItems: state.wallet.get('items').toJS(),
+  totalBalanceAmount: totalBalanceAmountSelector(state),
+  totalFiatAmount: totalFiatAmountSelector(state),
   error: state.wallet.get('error'),
 });
 
