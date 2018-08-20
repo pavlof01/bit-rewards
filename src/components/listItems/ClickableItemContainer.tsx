@@ -86,7 +86,7 @@ class ClickableItemContainer extends React.Component<ClickableItemContainerProps
             </View>
             <View style={styles.arrowColumn}>
               <View style={styles.chevronBox}>
-                <Image source={require('../../img/chevron.png')} style={styles.chevron} />
+                <Image source={require('../../img/chevron_arrow.png')} style={styles.chevron} />
               </View>
             </View>
           </View>
