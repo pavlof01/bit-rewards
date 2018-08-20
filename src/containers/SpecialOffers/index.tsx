@@ -17,7 +17,7 @@ import EarnBitItem from '../../components/listItems/EarnBitItem';
 import SpendBitItem from '../../components/listItems/SpendBitItem';
 import CentredActivityIndicator from '../../components/CentredActivityIndicator';
 import { SpecialOfferActions } from '../../actions/specialOffers';
-import ModalDialog from '../../components/Dialogs/ModalDialog';
+import EarnBitDialog from '../../components/Dialogs/EarnBitDialog';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -171,9 +171,13 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
             <View style={styles.searchWrapper}>
               <Search />
             </View>
-            <View style={styles.carouselWrapper}>
-              <Carousel />
-            </View>
+            {
+              false && (
+                <View style={styles.carouselWrapper}>
+                  <Carousel/>
+                </View>
+              )
+            }
             <View style={styles.tabBarsWrapper}>
               <TabBar onChange={this.handleChangeTab}>
                 <TabBarButton title='Earn BIT' />
@@ -196,11 +200,11 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
               />
             )
           }
-          <ModalDialog
+          <EarnBitDialog
             onRequestClose={this.closeModal}
             visible={isModalVisible}
           >
-          </ModalDialog>
+          </EarnBitDialog>
         </View>
       </SafeAreaView>
     );

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     flexShrink: 1,
     backgroundColor: 'rgba(0, 0, 0, 0)',
-    zIndex: 0,
+    zIndex: 1000,
   },
   modalShade: {
     position: 'absolute',
@@ -44,12 +44,13 @@ const styles = StyleSheet.create({
   centerContainer: {
     position: 'absolute',
     maxHeight: height - MODAL_DIALOG_SAFE_MARGIN * 2,
-    zIndex: 1,
+    zIndex: 1001,
     margin: MODAL_DIALOG_SAFE_MARGIN,
   },
   itemContainer: {
     paddingTop: MODAL_DIALOG_SAFE_MARGIN,
     overflow: 'scroll',
+    zIndex: 1005,
   },
 });
 
@@ -64,6 +65,7 @@ export interface ModalDialogProps {
    * _On the Android platform, this is a required function._
    */
   onRequestClose?: () => void;
+  shadeColor?: string;
 }
 export interface State { }
 
@@ -84,6 +86,7 @@ class ModalDialog extends React.Component<ModalDialogProps, State> {
       children,
       visible,
       onRequestClose,
+      shadeColor,
     } = this.props;
     return (
       <Modal
@@ -98,7 +101,7 @@ class ModalDialog extends React.Component<ModalDialogProps, State> {
             <Touchable
               onPress={this.onShadePress}
             >
-              <View style={styles.modalShade} />
+              <View style={[styles.modalShade, shadeColor ? { backgroundColor: shadeColor } : {}]} />
             </Touchable>
           </View>
           <View style={styles.centerContainer}>
