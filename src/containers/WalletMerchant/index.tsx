@@ -139,7 +139,10 @@ class WalletMerchant extends React.Component<WalletMerchantProps, WalletMerchant
     const {
       fetchWalletMerchantInfo,
     } = this.props;
-    fetchWalletMerchantInfo('test-partner-key');
+    const partnerKey = this.props.navigation.getParam('partnerKey', null);
+    if (partnerKey) {
+      fetchWalletMerchantInfo(partnerKey);
+    }
   }
 
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {

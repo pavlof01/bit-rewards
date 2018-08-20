@@ -45,7 +45,12 @@ export const navigationReducer = (state = initialState, action: any) => {
       break;
     }
     case navigationActions.OPEN_WALLET_MERCHANT: {
-      const navigateWalletMerchantAction = NavigationActions.navigate({ routeName: 'WalletMerchant' });
+      const navigateWalletMerchantAction = NavigationActions.navigate({
+        routeName: 'WalletMerchant',
+        params: {
+          partnerKey: action.payload.partnerKey,
+        },
+      });
       nextState = getStateForAction(navigateWalletMerchantAction, state);
       break;
     }
