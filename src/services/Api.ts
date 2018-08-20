@@ -88,6 +88,15 @@ class Api {
   }
 
   /**
+   * Загружает список мерчантов пользователя.
+   *
+   * @return {AxiosPromise<Object>}
+   */
+  static getPersonWalletList<T = any>(): AxiosPromise<T> {
+    return Api.get(`/wallet`);
+  }
+
+  /**
    * Загружает данные для кошелька мерчанта.
    *
    * @param {string} partnerKey - ключ мерчанта, например: 'test-partner-key'

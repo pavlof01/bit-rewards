@@ -5,6 +5,12 @@ import {
   dynamicInitialRouteData,
 } from './appInit';
 import {
+  merchantWalletListData,
+} from './wallet';
+import {
+  merchantWalletData,
+} from './merchant';
+import {
   transactionHistoryData,
 } from './history';
 import {
@@ -17,6 +23,8 @@ const rootSagas = function* root() {
     fork(loginData),
     fork(logoutData),
     fork(dynamicInitialRouteData),
+    fork(merchantWalletListData),
+    fork(merchantWalletData),
     fork(transactionHistoryData),
     fork(offerActionsListData),
     fork(offerRewardListData),

@@ -11,8 +11,10 @@ import { SafeAreaView } from 'react-navigation';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { NavigationActions } from '../../actions/navigation';
+import { WalletActions } from '../../actions/wallet';
 import MerchantItem from '../../components/listItems/MerchantItem';
 import Touchable from '../../components/Touchable';
+import CentredActivityIndicator from '../../components/CentredActivityIndicator'
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -78,19 +80,40 @@ const styles = StyleSheet.create({
 export interface WalletProps {
   openWalletMerchant: () => void;
   openWalletHistory: () => void;
+  fetchWalletList: () => void;
+  isFetching: boolean;
+  walletItems: any;
+  error: any;
 }
 export interface State { }
 
 class Wallet extends React.Component<WalletProps, State> {
 
+  componentDidMount() {
+    const {
+      fetchWalletList,
+    } = this.props;
+    fetchWalletList();
+  }
+
+  getFlatListData = () => {
+    const { walletItems } = this.props;
+    return walletItems;
+  }
+
   renderItem = (listItemInfo: ListRenderItemInfo<any>) => {
     const {
       openWalletMerchant,
     } = this.props;
+    const {
+      item,
+    } = listItemInfo;
     return (
       <MerchantItem
         onPress={openWalletMerchant}
         highlight
+        title={item.partner.title}
+        balanceAmount={item.balanceAmount}
       />
     );
   }
@@ -100,7 +123,9 @@ class Wallet extends React.Component<WalletProps, State> {
   render() {
     const {
       openWalletHistory,
+      isFetching,
     } = this.props;
+    const flatListData = this.getFlatListData();
     return (
       <SafeAreaView style={styles.safeContainer}>
         <StatusBar
@@ -130,15 +155,21 @@ class Wallet extends React.Component<WalletProps, State> {
               </Touchable>
             </View>
           </View>
-          <FlatList
-            contentContainerStyle={styles.listContainer}
-            data={[
-              1,
-            ]}
-            keyExtractor={this.keyExtractor}
-            renderItem={this.renderItem}
-            ListHeaderComponent={<Text style={styles.listHeaderText}>{'Wallet list'}</Text>}
-          />
+          { flatListData.length === 0 && isFetching && (
+            <CentredActivityIndicator />
+          )
+          }
+          {
+            !(flatListData.length === 0 && isFetching) && (
+              <FlatList
+                contentContainerStyle={styles.listContainer}
+                data={flatListData}
+                keyExtractor={this.keyExtractor}
+                renderItem={this.renderItem}
+                ListHeaderComponent={<Text style={styles.listHeaderText}>{'Wallet list'}</Text>}
+              />
+            )
+          }
         </View>
       </SafeAreaView>
     );
@@ -148,9 +179,13 @@ class Wallet extends React.Component<WalletProps, State> {
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   openWalletMerchant: () => dispatch(NavigationActions.openWalletMerchant()),
   openWalletHistory: () => dispatch(NavigationActions.openWalletHistory()),
+  fetchWalletList: () => dispatch(WalletActions.fetchWalletList()),
 });
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state: any) => ({
+  isFetching: state.wallet.get('isFetching'),
+  walletItems: state.wallet.get('items').toJS(),
+  error: state.wallet.get('error'),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

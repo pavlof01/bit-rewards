@@ -27,6 +27,8 @@ const styles = StyleSheet.create({
 export interface MerchantItemProps {
   onPress?: () => void;
   highlight?: boolean;
+  title: string;
+  balanceAmount: number;
 }
 export interface State { }
 
@@ -35,6 +37,8 @@ class MerchantItem extends React.Component<MerchantItemProps, State> {
     const {
       onPress,
       highlight,
+      title,
+      balanceAmount,
     } = this.props;
     return (
       <ClickableItemContainer
@@ -43,10 +47,10 @@ class MerchantItem extends React.Component<MerchantItemProps, State> {
       >
         <View style={styles.container}>
           <Text style={styles.titleText}>
-            {'BitRewards'}
+            {title || ' '}
           </Text>
           <Text style={styles.bitText}>
-            {'200 BIT'}
+            {`${balanceAmount || 0} BIT`}
           </Text>
         </View>
       </ClickableItemContainer>
