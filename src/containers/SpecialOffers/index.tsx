@@ -17,6 +17,7 @@ import EarnBitItem from '../../components/listItems/EarnBitItem';
 import SpendBitItem from '../../components/listItems/SpendBitItem';
 import CentredActivityIndicator from '../../components/CentredActivityIndicator';
 import { SpecialOfferActions } from '../../actions/specialOffers';
+import ModalDialog from '../../components/Dialogs/ModalDialog';
 
 const styles = StyleSheet.create({
   safeContainer: {
@@ -69,6 +70,7 @@ export interface SpecialOffersProps {
 
 export interface SpecialOffersState {
   activeTab: number;
+  isModalVisible: boolean;
 }
 
 class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersState> {
@@ -77,6 +79,7 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
 
     this.state = {
       activeTab: 0,
+      isModalVisible: false,
     };
   }
 
@@ -123,6 +126,7 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
             image={'https://crm.inprg.com/assets/icons/gift.svg'}
             brand={item.brand}
             description={item.action.description}
+            onPress={this.onEarnBitPress}
           />
         );
       case REDEEM_BIT_TAB_INDEX:
@@ -140,10 +144,21 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
 
   keyExtractor = (item: any, index: number) => `offer-${index}`;
 
+  onEarnBitPress = () => {
+    this.setState({ isModalVisible: true });
+  }
+
+  closeModal = () => {
+    this.setState({ isModalVisible: false });
+  }
+
   render() {
     const {
       isFetching,
     } = this.props;
+    const {
+      isModalVisible,
+    } = this.state;
     const flatListData = this.getFlatListData();
     return (
       <SafeAreaView style={styles.safeContainer}>
@@ -181,6 +196,11 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
               />
             )
           }
+          <ModalDialog
+            onRequestClose={this.closeModal}
+            visible={isModalVisible}
+          >
+          </ModalDialog>
         </View>
       </SafeAreaView>
     );
