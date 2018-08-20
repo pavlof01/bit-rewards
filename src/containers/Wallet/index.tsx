@@ -150,7 +150,7 @@ class Wallet extends React.Component<WalletProps, State> {
                 {`${totalBalanceAmount} BIT`}
               </Text>
               <Text style={styles.subBalance}>
-                {`≈$${totalFiatAmount}`}
+                {`≈${totalFiatAmount}₽`}
               </Text>
             </View>
             <View style={styles.historyButtonContainer}>
