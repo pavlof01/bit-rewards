@@ -74,6 +74,8 @@ export interface SpecialOffersState {
 }
 
 class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersState> {
+  private flatList: any;
+
   constructor(props: SpecialOffersProps) {
     super(props);
 
@@ -92,7 +94,15 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
     fetchOfferRewardList(1, 15);
   }
 
-  handleChangeTab = (index: number) => this.setState({ activeTab: index });
+  handleChangeTab = (index: number) => {
+    this.setState({ activeTab: index }, this.scrollToTop);
+  }
+
+  scrollToTop = () => {
+    if (this.flatList) {
+      this.flatList.scrollToOffset({ offset: 0, animated: false });
+    }
+  }
 
   getFlatListData = () => {
     const {
@@ -192,6 +202,7 @@ class SpecialOffers extends React.Component<SpecialOffersProps, SpecialOffersSta
           {
             !(flatListData.length === 0 && isFetching) && (
               <FlatList
+                ref={ref => (this.flatList = ref)}
                 contentContainerStyle={styles.listContainer}
                 data={flatListData}
                 extraData={this.props}
