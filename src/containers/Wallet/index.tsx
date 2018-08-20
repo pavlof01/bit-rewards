@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 });
 
 export interface WalletProps {
-  openWalletMerchant: () => void;
+  openWalletMerchant: (partnerKey: string) => void;
   openWalletHistory: () => void;
   fetchWalletList: () => void;
   isFetching: boolean;
@@ -114,9 +114,10 @@ class Wallet extends React.Component<WalletProps, State> {
     const {
       item,
     } = listItemInfo;
+    const onPress = () => openWalletMerchant(item.partner.key);
     return (
       <MerchantItem
-        onPress={openWalletMerchant}
+        onPress={onPress}
         highlight
         title={item.partner.title}
         balanceAmount={item.balanceAmount}
@@ -185,7 +186,7 @@ class Wallet extends React.Component<WalletProps, State> {
 }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  openWalletMerchant: () => dispatch(NavigationActions.openWalletMerchant()),
+  openWalletMerchant: (partnerKey: string) => dispatch(NavigationActions.openWalletMerchant(partnerKey)),
   openWalletHistory: () => dispatch(NavigationActions.openWalletHistory()),
   fetchWalletList: () => dispatch(WalletActions.fetchWalletList()),
 });

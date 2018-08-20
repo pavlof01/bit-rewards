@@ -5,7 +5,10 @@ export const OPEN_WALLET_MERCHANT = 'OPEN_WALLET_MERCHANT';
 export const OPEN_WALLET_HISTORY = 'OPEN_WALLET_HISTORY';
 
 export const NavigationActions = {
-  openWalletMerchant: () => createAction(OPEN_WALLET_MERCHANT),
+  openWalletMerchant: (partnerKey: string) => createAction(
+    OPEN_WALLET_MERCHANT,
+    { partnerKey },
+  ),
   openWalletHistory: () => createAction(OPEN_WALLET_HISTORY),
 };
 
