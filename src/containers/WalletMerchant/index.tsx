@@ -116,6 +116,13 @@ const styles = StyleSheet.create({
 export interface WalletMerchantProps {
   fetchWalletMerchantInfo: (partnerKey: string) => any;
   navigation: NavigationScreenProp<NavigationState>;
+  key: string;
+  title: string;
+  image?: string;
+  balanceAmount: number;
+  fiatAmount: number;
+  fiatCurrency: string;
+  couponsCount: number;
 }
 
 export interface WalletMerchantState {
@@ -223,6 +230,12 @@ class WalletMerchant extends React.Component<WalletMerchantProps, WalletMerchant
   }
 
   render() {
+    const {
+      title,
+      balanceAmount,
+      fiatAmount,
+      couponsCount,
+    } = this.props;
     return (
       <SafeAreaView style={styles.safeContainer}>
         <StatusBar
@@ -236,13 +249,13 @@ class WalletMerchant extends React.Component<WalletMerchantProps, WalletMerchant
             </View>
             <View style={styles.headerCentredText}>
               <Text style={styles.merchantTitle}>
-                {'Starbucks'}
+                {title}
               </Text>
               <Text style={styles.balance}>
-                {'14 000 BIT'}
+                {`${balanceAmount} BIT`}
               </Text>
               <Text style={styles.subBalance}>
-                {'≈$14'}
+                {`≈${fiatAmount}₽`}
               </Text>
             </View>
             <View style={styles.buttonContainer}>
@@ -258,7 +271,7 @@ class WalletMerchant extends React.Component<WalletMerchantProps, WalletMerchant
               <TabBar onChange={this.handleChangeTab}>
                 <TabBarButton title='Earn BIT' />
                 <TabBarButton title='Redeem BIT' />
-                <TabBarButton title='2 Coupons' />
+                <TabBarButton title={`${couponsCount} Coupons`} />
               </TabBar>
             </View>
             <View style={styles.backArrowWrapper}>
@@ -287,6 +300,13 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const mapStateToProps = (state: any) => ({
   isFetching: state.merchant.get('isFetching'),
+  key: state.merchant.get('key'),
+  title: state.merchant.get('title'),
+  image: state.merchant.get('iamge'),
+  balanceAmount: state.merchant.get('balanceAmount'),
+  fiatAmount: state.merchant.get('fiatAmount'),
+  fiatCurrency: state.merchant.get('fiatCurrency'),
+  couponsCount: state.merchant.get('couponsCount'),
   error: state.merchant.get('error'),
 });
 

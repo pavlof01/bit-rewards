@@ -8,7 +8,13 @@ import * as merchantActions from '../actions/merchant';
 
 const initialState = fromJS({
   isFetching: false,
+  key: '',
   title: '',
+  image: null,
+  balanceAmount: 0,
+  fiatAmount: 0,
+  fiatCurrency: null,
+  couponsCount: 0,
   error: null,
 });
 
@@ -22,6 +28,13 @@ export const historyReducer = (state = initialState, action: sessionActions.Sess
     case merchantActions.FETCH_WALLET_MERCHANT_INFO_SUCCESS: {
       return state
         .set('isFetching', false)
+        .set('key', action.payload.partner.key)
+        .set('title', action.payload.partner.title)
+        .set('image', action.payload.partner.image)
+        .set('balanceAmount', action.payload.balanceAmount)
+        .set('fiatAmount', action.payload.fiatAmount)
+        .set('fiatCurrency', action.payload.fiatCurrency)
+        .set('couponsCount', action.payload.couponsCount)
         .set('error', null);
     }
     case merchantActions.FETCH_WALLET_MERCHANT_INFO_FAILURE: {
